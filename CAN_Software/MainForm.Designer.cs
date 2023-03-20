@@ -59,10 +59,20 @@ namespace CAN_Software
 			this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
 			this.makeSelection = new System.Windows.Forms.ComboBox();
 			this.modelSelection = new System.Windows.Forms.ComboBox();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.tranmissionType = new System.Windows.Forms.ComboBox();
+			this.engineSize = new System.Windows.Forms.ComboBox();
+			this.fuelType = new System.Windows.Forms.ComboBox();
 			this.regYearSelection = new System.Windows.Forms.ComboBox();
+			this.drivetrainBox = new System.Windows.Forms.ComboBox();
+			this.button1 = new System.Windows.Forms.Button();
+			this.makeLabel = new System.Windows.Forms.Label();
+			this.modelLabel = new System.Windows.Forms.Label();
+			this.regYearLabel = new System.Windows.Forms.Label();
+			this.engineSizeLabel = new System.Windows.Forms.Label();
+			this.fuelTypeLabel = new System.Windows.Forms.Label();
+			this.transmissionTypeLabel = new System.Windows.Forms.Label();
+			this.drivetrainLabel = new System.Windows.Forms.Label();
+			this.profileSave = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabController.SuspendLayout();
 			this.analyserTab.SuspendLayout();
@@ -81,7 +91,7 @@ namespace CAN_Software
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-			this.menuStrip1.Size = new System.Drawing.Size(1265, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1904, 24);
 			this.menuStrip1.TabIndex = 1;
 			this.menuStrip1.Text = "menuStrip1";
 			this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -132,10 +142,10 @@ namespace CAN_Software
 			// 
 			this.CANText.EnableAutoDragDrop = true;
 			this.CANText.Location = new System.Drawing.Point(5, 4);
-			this.CANText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.CANText.Margin = new System.Windows.Forms.Padding(2);
 			this.CANText.Name = "CANText";
 			this.CANText.ReadOnly = true;
-			this.CANText.Size = new System.Drawing.Size(325, 565);
+			this.CANText.Size = new System.Drawing.Size(443, 905);
 			this.CANText.TabIndex = 2;
 			this.CANText.Text = "";
 			this.CANText.TextChanged += new System.EventHandler(this.CANText_TextChanged);
@@ -147,8 +157,8 @@ namespace CAN_Software
 			// 
 			// openButton
 			// 
-			this.openButton.Location = new System.Drawing.Point(339, 83);
-			this.openButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.openButton.Location = new System.Drawing.Point(452, 83);
+			this.openButton.Margin = new System.Windows.Forms.Padding(2);
 			this.openButton.Name = "openButton";
 			this.openButton.Size = new System.Drawing.Size(50, 51);
 			this.openButton.TabIndex = 3;
@@ -158,8 +168,8 @@ namespace CAN_Software
 			// 
 			// closeButton
 			// 
-			this.closeButton.Location = new System.Drawing.Point(447, 83);
-			this.closeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.closeButton.Location = new System.Drawing.Point(588, 83);
+			this.closeButton.Margin = new System.Windows.Forms.Padding(2);
 			this.closeButton.Name = "closeButton";
 			this.closeButton.Size = new System.Drawing.Size(50, 51);
 			this.closeButton.TabIndex = 4;
@@ -170,8 +180,8 @@ namespace CAN_Software
 			// portSelect
 			// 
 			this.portSelect.FormattingEnabled = true;
-			this.portSelect.Location = new System.Drawing.Point(333, 16);
-			this.portSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.portSelect.Location = new System.Drawing.Point(452, 4);
+			this.portSelect.Margin = new System.Windows.Forms.Padding(2);
 			this.portSelect.Name = "portSelect";
 			this.portSelect.Size = new System.Drawing.Size(82, 21);
 			this.portSelect.TabIndex = 5;
@@ -180,8 +190,8 @@ namespace CAN_Software
 			// baudSelect
 			// 
 			this.baudSelect.FormattingEnabled = true;
-			this.baudSelect.Location = new System.Drawing.Point(333, 48);
-			this.baudSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.baudSelect.Location = new System.Drawing.Point(452, 47);
+			this.baudSelect.Margin = new System.Windows.Forms.Padding(2);
 			this.baudSelect.Name = "baudSelect";
 			this.baudSelect.Size = new System.Drawing.Size(82, 21);
 			this.baudSelect.TabIndex = 6;
@@ -189,8 +199,8 @@ namespace CAN_Software
 			// 
 			// filterBox
 			// 
-			this.filterBox.Location = new System.Drawing.Point(533, 150);
-			this.filterBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.filterBox.Location = new System.Drawing.Point(671, 146);
+			this.filterBox.Margin = new System.Windows.Forms.Padding(2);
 			this.filterBox.Name = "filterBox";
 			this.filterBox.Size = new System.Drawing.Size(77, 20);
 			this.filterBox.TabIndex = 7;
@@ -198,8 +208,8 @@ namespace CAN_Software
 			// 
 			// filterButton
 			// 
-			this.filterButton.Location = new System.Drawing.Point(464, 146);
-			this.filterButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.filterButton.Location = new System.Drawing.Point(588, 146);
+			this.filterButton.Margin = new System.Windows.Forms.Padding(2);
 			this.filterButton.Name = "filterButton";
 			this.filterButton.Size = new System.Drawing.Size(50, 25);
 			this.filterButton.TabIndex = 8;
@@ -209,20 +219,20 @@ namespace CAN_Software
 			// 
 			// filterList
 			// 
-			this.filterList.Location = new System.Drawing.Point(339, 146);
-			this.filterList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.filterList.Location = new System.Drawing.Point(455, 146);
+			this.filterList.Margin = new System.Windows.Forms.Padding(2);
 			this.filterList.Multiline = true;
 			this.filterList.Name = "filterList";
-			this.filterList.Size = new System.Drawing.Size(116, 244);
+			this.filterList.Size = new System.Drawing.Size(116, 732);
 			this.filterList.TabIndex = 9;
 			this.filterList.TextChanged += new System.EventHandler(this.filterList_TextChanged);
 			// 
 			// clearButton
 			// 
-			this.clearButton.Location = new System.Drawing.Point(339, 393);
-			this.clearButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.clearButton.Location = new System.Drawing.Point(455, 882);
+			this.clearButton.Margin = new System.Windows.Forms.Padding(2);
 			this.clearButton.Name = "clearButton";
-			this.clearButton.Size = new System.Drawing.Size(115, 27);
+			this.clearButton.Size = new System.Drawing.Size(116, 27);
 			this.clearButton.TabIndex = 10;
 			this.clearButton.Text = "clear";
 			this.clearButton.UseVisualStyleBackColor = true;
@@ -230,8 +240,8 @@ namespace CAN_Software
 			// 
 			// focusButton
 			// 
-			this.focusButton.Location = new System.Drawing.Point(464, 190);
-			this.focusButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.focusButton.Location = new System.Drawing.Point(588, 190);
+			this.focusButton.Margin = new System.Windows.Forms.Padding(2);
 			this.focusButton.Name = "focusButton";
 			this.focusButton.Size = new System.Drawing.Size(50, 23);
 			this.focusButton.TabIndex = 11;
@@ -241,8 +251,8 @@ namespace CAN_Software
 			// 
 			// focusBox
 			// 
-			this.focusBox.Location = new System.Drawing.Point(533, 196);
-			this.focusBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.focusBox.Location = new System.Drawing.Point(671, 193);
+			this.focusBox.Margin = new System.Windows.Forms.Padding(2);
 			this.focusBox.Name = "focusBox";
 			this.focusBox.Size = new System.Drawing.Size(77, 20);
 			this.focusBox.TabIndex = 12;
@@ -250,8 +260,8 @@ namespace CAN_Software
 			// 
 			// pauseButton
 			// 
-			this.pauseButton.Location = new System.Drawing.Point(393, 83);
-			this.pauseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.pauseButton.Location = new System.Drawing.Point(521, 83);
+			this.pauseButton.Margin = new System.Windows.Forms.Padding(2);
 			this.pauseButton.Name = "pauseButton";
 			this.pauseButton.Size = new System.Drawing.Size(50, 51);
 			this.pauseButton.TabIndex = 13;
@@ -266,19 +276,36 @@ namespace CAN_Software
 			this.tabController.Controls.Add(this.grapherTab);
 			this.tabController.Dock = System.Windows.Forms.DockStyle.Left;
 			this.tabController.Location = new System.Drawing.Point(0, 24);
-			this.tabController.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.tabController.Margin = new System.Windows.Forms.Padding(2);
 			this.tabController.Multiline = true;
 			this.tabController.Name = "tabController";
 			this.tabController.SelectedIndex = 0;
-			this.tabController.Size = new System.Drawing.Size(1002, 642);
+			this.tabController.Size = new System.Drawing.Size(2052, 1017);
 			this.tabController.TabIndex = 14;
 			this.tabController.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
 			// analyserTab
 			// 
+			this.analyserTab.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.analyserTab.Controls.Add(this.profileSave);
+			this.analyserTab.Controls.Add(this.drivetrainLabel);
+			this.analyserTab.Controls.Add(this.transmissionTypeLabel);
+			this.analyserTab.Controls.Add(this.fuelTypeLabel);
+			this.analyserTab.Controls.Add(this.engineSizeLabel);
+			this.analyserTab.Controls.Add(this.regYearLabel);
+			this.analyserTab.Controls.Add(this.modelLabel);
+			this.analyserTab.Controls.Add(this.makeLabel);
+			this.analyserTab.Controls.Add(this.button1);
+			this.analyserTab.Controls.Add(this.drivetrainBox);
+			this.analyserTab.Controls.Add(this.makeSelection);
+			this.analyserTab.Controls.Add(this.modelSelection);
+			this.analyserTab.Controls.Add(this.regYearSelection);
 			this.analyserTab.Controls.Add(this.CANText);
+			this.analyserTab.Controls.Add(this.fuelType);
 			this.analyserTab.Controls.Add(this.pauseButton);
+			this.analyserTab.Controls.Add(this.engineSize);
 			this.analyserTab.Controls.Add(this.openButton);
+			this.analyserTab.Controls.Add(this.tranmissionType);
 			this.analyserTab.Controls.Add(this.focusBox);
 			this.analyserTab.Controls.Add(this.closeButton);
 			this.analyserTab.Controls.Add(this.focusButton);
@@ -290,21 +317,20 @@ namespace CAN_Software
 			this.analyserTab.Controls.Add(this.filterButton);
 			this.analyserTab.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.analyserTab.Location = new System.Drawing.Point(4, 22);
-			this.analyserTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.analyserTab.Margin = new System.Windows.Forms.Padding(2);
 			this.analyserTab.Name = "analyserTab";
-			this.analyserTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-			this.analyserTab.Size = new System.Drawing.Size(994, 616);
+			this.analyserTab.Padding = new System.Windows.Forms.Padding(2);
+			this.analyserTab.Size = new System.Drawing.Size(2044, 991);
 			this.analyserTab.TabIndex = 0;
 			this.analyserTab.Text = "Analyser";
-			this.analyserTab.UseVisualStyleBackColor = true;
 			this.analyserTab.Click += new System.EventHandler(this.analyserTab_Click);
 			// 
 			// debuggerTab
 			// 
 			this.debuggerTab.Location = new System.Drawing.Point(4, 22);
-			this.debuggerTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.debuggerTab.Margin = new System.Windows.Forms.Padding(2);
 			this.debuggerTab.Name = "debuggerTab";
-			this.debuggerTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.debuggerTab.Padding = new System.Windows.Forms.Padding(2);
 			this.debuggerTab.Size = new System.Drawing.Size(994, 616);
 			this.debuggerTab.TabIndex = 1;
 			this.debuggerTab.Text = "Debugger";
@@ -314,9 +340,9 @@ namespace CAN_Software
 			// grapherTab
 			// 
 			this.grapherTab.Location = new System.Drawing.Point(4, 22);
-			this.grapherTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grapherTab.Margin = new System.Windows.Forms.Padding(2);
 			this.grapherTab.Name = "grapherTab";
-			this.grapherTab.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.grapherTab.Padding = new System.Windows.Forms.Padding(2);
 			this.grapherTab.Size = new System.Drawing.Size(994, 616);
 			this.grapherTab.TabIndex = 2;
 			this.grapherTab.Text = "Grapher";
@@ -324,9 +350,10 @@ namespace CAN_Software
 			// 
 			// makeSelection
 			// 
+			this.makeSelection.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.makeSelection.FormattingEnabled = true;
-			this.makeSelection.Location = new System.Drawing.Point(1127, 57);
-			this.makeSelection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.makeSelection.Location = new System.Drawing.Point(1758, 150);
+			this.makeSelection.Margin = new System.Windows.Forms.Padding(2);
 			this.makeSelection.Name = "makeSelection";
 			this.makeSelection.Size = new System.Drawing.Size(121, 21);
 			this.makeSelection.TabIndex = 15;
@@ -334,69 +361,168 @@ namespace CAN_Software
 			// 
 			// modelSelection
 			// 
+			this.modelSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.modelSelection.FormattingEnabled = true;
-			this.modelSelection.Location = new System.Drawing.Point(1127, 106);
+			this.modelSelection.Location = new System.Drawing.Point(1758, 34);
 			this.modelSelection.Margin = new System.Windows.Forms.Padding(2);
 			this.modelSelection.Name = "modelSelection";
 			this.modelSelection.Size = new System.Drawing.Size(121, 21);
 			this.modelSelection.TabIndex = 16;
 			this.modelSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
 			// 
-			// comboBox2
+			// tranmissionType
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(1127, 316);
-			this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(121, 21);
-			this.comboBox2.TabIndex = 17;
+			this.tranmissionType.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.tranmissionType.FormattingEnabled = true;
+			this.tranmissionType.Location = new System.Drawing.Point(1758, 673);
+			this.tranmissionType.Margin = new System.Windows.Forms.Padding(2);
+			this.tranmissionType.Name = "tranmissionType";
+			this.tranmissionType.Size = new System.Drawing.Size(121, 21);
+			this.tranmissionType.TabIndex = 17;
 			// 
-			// comboBox3
+			// engineSize
 			// 
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(1127, 264);
-			this.comboBox3.Margin = new System.Windows.Forms.Padding(2);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(121, 21);
-			this.comboBox3.TabIndex = 18;
+			this.engineSize.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.engineSize.FormattingEnabled = true;
+			this.engineSize.Location = new System.Drawing.Point(1758, 532);
+			this.engineSize.Margin = new System.Windows.Forms.Padding(2);
+			this.engineSize.Name = "engineSize";
+			this.engineSize.Size = new System.Drawing.Size(121, 21);
+			this.engineSize.TabIndex = 18;
 			// 
-			// comboBox4
+			// fuelType
 			// 
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Location = new System.Drawing.Point(1127, 209);
-			this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(121, 21);
-			this.comboBox4.TabIndex = 19;
+			this.fuelType.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.fuelType.FormattingEnabled = true;
+			this.fuelType.Location = new System.Drawing.Point(1758, 397);
+			this.fuelType.Margin = new System.Windows.Forms.Padding(2);
+			this.fuelType.Name = "fuelType";
+			this.fuelType.Size = new System.Drawing.Size(121, 21);
+			this.fuelType.TabIndex = 19;
+			this.fuelType.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
 			// 
 			// regYearSelection
 			// 
+			this.regYearSelection.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.regYearSelection.FormattingEnabled = true;
-			this.regYearSelection.Location = new System.Drawing.Point(1127, 159);
+			this.regYearSelection.Location = new System.Drawing.Point(1758, 269);
 			this.regYearSelection.Margin = new System.Windows.Forms.Padding(2);
 			this.regYearSelection.Name = "regYearSelection";
 			this.regYearSelection.Size = new System.Drawing.Size(121, 21);
 			this.regYearSelection.TabIndex = 20;
 			this.regYearSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
 			// 
+			// drivetrainBox
+			// 
+			this.drivetrainBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.drivetrainBox.FormattingEnabled = true;
+			this.drivetrainBox.Location = new System.Drawing.Point(1758, 804);
+			this.drivetrainBox.Margin = new System.Windows.Forms.Padding(2);
+			this.drivetrainBox.Name = "drivetrainBox";
+			this.drivetrainBox.Size = new System.Drawing.Size(121, 21);
+			this.drivetrainBox.TabIndex = 21;
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(5, 914);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(443, 69);
+			this.button1.TabIndex = 22;
+			this.button1.Text = "Save";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// makeLabel
+			// 
+			this.makeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.makeLabel.AutoSize = true;
+			this.makeLabel.Location = new System.Drawing.Point(1716, 37);
+			this.makeLabel.Name = "makeLabel";
+			this.makeLabel.Size = new System.Drawing.Size(37, 13);
+			this.makeLabel.TabIndex = 23;
+			this.makeLabel.Text = "Make:";
+			// 
+			// modelLabel
+			// 
+			this.modelLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.modelLabel.AutoSize = true;
+			this.modelLabel.Location = new System.Drawing.Point(1714, 153);
+			this.modelLabel.Name = "modelLabel";
+			this.modelLabel.Size = new System.Drawing.Size(39, 13);
+			this.modelLabel.TabIndex = 24;
+			this.modelLabel.Text = "Model:";
+			// 
+			// regYearLabel
+			// 
+			this.regYearLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.regYearLabel.AutoSize = true;
+			this.regYearLabel.Location = new System.Drawing.Point(1698, 272);
+			this.regYearLabel.Name = "regYearLabel";
+			this.regYearLabel.Size = new System.Drawing.Size(55, 13);
+			this.regYearLabel.TabIndex = 25;
+			this.regYearLabel.Text = "Reg Year:";
+			// 
+			// engineSizeLabel
+			// 
+			this.engineSizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.engineSizeLabel.AutoSize = true;
+			this.engineSizeLabel.Location = new System.Drawing.Point(1687, 400);
+			this.engineSizeLabel.Name = "engineSizeLabel";
+			this.engineSizeLabel.Size = new System.Drawing.Size(66, 13);
+			this.engineSizeLabel.TabIndex = 26;
+			this.engineSizeLabel.Text = "Engine Size:";
+			// 
+			// fuelTypeLabel
+			// 
+			this.fuelTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.fuelTypeLabel.AutoSize = true;
+			this.fuelTypeLabel.Location = new System.Drawing.Point(1696, 535);
+			this.fuelTypeLabel.Name = "fuelTypeLabel";
+			this.fuelTypeLabel.Size = new System.Drawing.Size(57, 13);
+			this.fuelTypeLabel.TabIndex = 27;
+			this.fuelTypeLabel.Text = "Fuel Type:";
+			// 
+			// transmissionTypeLabel
+			// 
+			this.transmissionTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.transmissionTypeLabel.AutoSize = true;
+			this.transmissionTypeLabel.Location = new System.Drawing.Point(1655, 676);
+			this.transmissionTypeLabel.Name = "transmissionTypeLabel";
+			this.transmissionTypeLabel.Size = new System.Drawing.Size(98, 13);
+			this.transmissionTypeLabel.TabIndex = 28;
+			this.transmissionTypeLabel.Text = "Transmission Type:";
+			// 
+			// drivetrainLabel
+			// 
+			this.drivetrainLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.drivetrainLabel.AutoSize = true;
+			this.drivetrainLabel.Location = new System.Drawing.Point(1698, 807);
+			this.drivetrainLabel.Name = "drivetrainLabel";
+			this.drivetrainLabel.Size = new System.Drawing.Size(55, 13);
+			this.drivetrainLabel.TabIndex = 29;
+			this.drivetrainLabel.Text = "Drivetrain:";
+			// 
+			// profileSave
+			// 
+			this.profileSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.profileSave.Location = new System.Drawing.Point(1758, 937);
+			this.profileSave.Name = "profileSave";
+			this.profileSave.Size = new System.Drawing.Size(121, 23);
+			this.profileSave.TabIndex = 30;
+			this.profileSave.Text = "Save Profile";
+			this.profileSave.UseVisualStyleBackColor = true;
+			// 
 			// CANAnalyser
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
-			this.ClientSize = new System.Drawing.Size(1265, 666);
-			this.Controls.Add(this.regYearSelection);
-			this.Controls.Add(this.comboBox4);
-			this.Controls.Add(this.comboBox3);
-			this.Controls.Add(this.comboBox2);
-			this.Controls.Add(this.modelSelection);
-			this.Controls.Add(this.makeSelection);
+			this.ClientSize = new System.Drawing.Size(1904, 1041);
 			this.Controls.Add(this.tabController);
 			this.Controls.Add(this.menuStrip1);
 			this.Cursor = System.Windows.Forms.Cursors.Default;
 			this.HelpButton = true;
 			this.MainMenuStrip = this.menuStrip1;
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "CANAnalyser";
 			this.Text = "CANAnalyser";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -441,10 +567,20 @@ namespace CAN_Software
 		private System.DirectoryServices.DirectoryEntry directoryEntry1;
 		private System.Windows.Forms.ComboBox makeSelection;
 		private System.Windows.Forms.ComboBox modelSelection;
-		private System.Windows.Forms.ComboBox comboBox2;
-		private System.Windows.Forms.ComboBox comboBox3;
-		private System.Windows.Forms.ComboBox comboBox4;
+		private System.Windows.Forms.ComboBox tranmissionType;
+		private System.Windows.Forms.ComboBox engineSize;
+		private System.Windows.Forms.ComboBox fuelType;
 		private System.Windows.Forms.ComboBox regYearSelection;
+		private System.Windows.Forms.ComboBox drivetrainBox;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label drivetrainLabel;
+		private System.Windows.Forms.Label transmissionTypeLabel;
+		private System.Windows.Forms.Label fuelTypeLabel;
+		private System.Windows.Forms.Label engineSizeLabel;
+		private System.Windows.Forms.Label regYearLabel;
+		private System.Windows.Forms.Label modelLabel;
+		private System.Windows.Forms.Label makeLabel;
+		private System.Windows.Forms.Button profileSave;
 	}
 }
 

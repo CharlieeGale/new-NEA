@@ -1,7 +1,7 @@
 ﻿
 namespace CAN_Software
 {
-	partial class failedLogin
+	partial class failedLoginPage
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -38,6 +38,7 @@ namespace CAN_Software
 			this.ClientSize = new System.Drawing.Size(453, 268);
 			this.Name = "failedLogin";
 			this.Text = "failedLogin";
+			this.Load += new System.EventHandler(this.failedLogin_Load);
 			this.ResumeLayout(false);
 
 		}

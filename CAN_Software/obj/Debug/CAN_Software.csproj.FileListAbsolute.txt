@@ -7,3 +7,15 @@ C:\Users\charl\OneDrive\Documents\GitHub\CAN_SOFTWARE\CAN_Software\obj\Debug\CAN
 C:\Users\charl\OneDrive\Documents\GitHub\CAN_SOFTWARE\CAN_Software\obj\Debug\CAN_Software.csproj.CoreCompileInputs.cache
 C:\Users\charl\OneDrive\Documents\GitHub\CAN_SOFTWARE\CAN_Software\obj\Debug\CAN Software.exe
 C:\Users\charl\OneDrive\Documents\GitHub\CAN_SOFTWARE\CAN_Software\obj\Debug\CAN Software.pdb
+E:\Documents\GitHub\new-NEA\CAN_Software\bin\Debug\CAN Software.exe.config
+E:\Documents\GitHub\new-NEA\CAN_Software\bin\Debug\CAN Software.exe
+E:\Documents\GitHub\new-NEA\CAN_Software\bin\Debug\CAN Software.pdb
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.csproj.AssemblyReference.cache
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.loginPage.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.CANAnalyser.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.Properties.Resources.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.csproj.GenerateResource.cache
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.csproj.CoreCompileInputs.cache
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Software.exe
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Software.pdb
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedLoginPage.resources

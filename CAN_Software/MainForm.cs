@@ -34,9 +34,7 @@ namespace CAN_Software
 			LoginPage.ShowDialog();
 			
 			InitializeComponent();
-			displayPorts();
-			displayBaudRates();
-			fillMakeBox();
+			openButton.Enabled = false;
 			closeButton.Enabled = false;
 			pauseButton.Enabled = false;
 		}
@@ -48,16 +46,80 @@ namespace CAN_Software
 
 			serialPort.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
 		}
+		public void fillStaticBoxes()
+		{
+			fillPorts();
+			fillBaudRates();
+			fillMakeBox();
+			fillModelBox();
+			fillRegYear();
+
+		}
 		public void fillMakeBox()
 		{
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				connection.Open(); // opens connection to the database
+				List<String> makes = new List<string>();
+				string makesQuery = "SELECT makeName from makes";
+				using (SqlCommand makesSearch = new SqlCommand(makesQuery, connection))
+				{
+					using (SqlDataReader myReader = makesSearch.ExecuteReader())
+						while (myReader.Read()) // loops to add all values read to a list.
+						{
+							makes.Add(myReader.GetString(0));
+						}
+				}
 
+				while (makeSelection.SelectedItem != null)
+				{
+					List<String> filteredMakes = new List<string>();
+					string searchMakesQuery = $"Select makeName from makes WHERE makeName LIKE {makeSelection.SelectedItem} %";
+					using (SqlCommand searchMakesSearch = new SqlCommand(searchMakesQuery, connection))
+					{
+						using (SqlDataReader myReaderFilter = searchMakesSearch.ExecuteReader())
+							while (myReaderFilter.Read())
+							{
+								makes.Add(myReaderFilter.GetString(0));
+							}
+					}
+					makes = filteredMakes;
+
+				}
+				makeSelection.DataSource = makes;
+			}
 
 
 
 
 		}
+		public void fillModelBox()
+		{
 
-		public void displayBaudRates()
+		}
+		public void fillRegYear()
+		{
+
+		}
+		public void fillEngineSize()
+		{
+
+		}
+		public void fillFuelType()
+		{
+
+		}
+		public void fillTransmissionType()
+		{
+
+		}
+		public void fillDriveTrain()
+		{
+
+		}
+
+
+		public void fillBaudRates()
 		{
 			int[] baudRates = new int[] { 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 74880, 115200, 230400, 250000, 500000, 1000000 };
 			baudSelect.DataSource = baudRates;
@@ -134,7 +196,7 @@ namespace CAN_Software
 			tm.Enabled = true;
 		}
 
-		public void displayPorts() // Displays available ports in combobox (portSelect) 
+		public void fillPorts() // Displays available ports in combobox (portSelect) 
 		{
 			string[] ports = SerialPort.GetPortNames();
 			portSelect.DataSource = ports;
@@ -276,7 +338,7 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 
 		private void portSelect_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
+			openButton.Enabled = true;
 		}
 
 		private void tabPage1_Click(object sender, EventArgs e)
@@ -360,6 +422,11 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 		}
 
 		private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+		{
+
+		}
+
+		private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}

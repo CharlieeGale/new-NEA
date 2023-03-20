@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace CAN_Software
 {
-	public partial class failedLogin : Form
+	public partial class failedLoginPage : Form
 	{
-		public failedLogin()
+		public failedLoginPage()
 		{
 			InitializeComponent();
+		}
+
+		private void failedLogin_Load(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

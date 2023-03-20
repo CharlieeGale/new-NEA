@@ -41,12 +41,7 @@ namespace CAN_Software
         }
         bool loginCheck(string userLogin, string hashedPassword)
         {
-            const string loginCheck = @"
-SELECT *
-from logins l
-WHERE l.userName = @userLogin
-  AND l.userPassword = @hashedPassword;
-"; //creates an sql query to execute
+            const string loginCheck = @"SELECT * from logins l WHERE l.userName = @userLogin AND l.userPassword = @hashedPassword;"; //creates an sql query to execute
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(loginCheck, connection))
             {
@@ -70,10 +65,12 @@ WHERE l.userName = @userLogin
             {
                 this.Close();
             }
-            else;
-            failedLogin failedLogin = new failedLogin();
-            failedLogin.Activate();
-            failedLogin.ShowDialog();
+            else
+            {
+                failedLoginPage failedLogin = new failedLoginPage();
+                failedLogin.Activate();
+                failedLogin.ShowDialog();
+            }
 		}
 	}
 }

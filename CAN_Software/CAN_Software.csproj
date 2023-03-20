@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="failedLogin.cs">
+    <Compile Include="failedLoginPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="failedLogin.Designer.cs">
-      <DependentUpon>failedLogin.cs</DependentUpon>
+    <Compile Include="failedLoginPage.Designer.cs">
+      <DependentUpon>failedLoginPage.cs</DependentUpon>
     </Compile>
     <Compile Include="loginPage.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="failedLogin.resx">
-      <DependentUpon>failedLogin.cs</DependentUpon>
+    <EmbeddedResource Include="failedLoginPage.resx">
+      <DependentUpon>failedLoginPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="loginPage.resx">
       <DependentUpon>loginPage.cs</DependentUpon>
@@ -116,11 +116,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CANDATA.txt" />
-    <Content Include="FILTERIDS.txt" />
-    <Content Include="RESULT.txt" />
     <Content Include="MakeList.txt" />
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
