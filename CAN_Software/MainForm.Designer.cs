@@ -53,26 +53,26 @@ namespace CAN_Software
 			this.pauseButton = new System.Windows.Forms.Button();
 			this.tabController = new System.Windows.Forms.TabControl();
 			this.analyserTab = new System.Windows.Forms.TabPage();
+			this.profileSave = new System.Windows.Forms.Button();
+			this.drivetrainLabel = new System.Windows.Forms.Label();
+			this.transmissionTypeLabel = new System.Windows.Forms.Label();
+			this.fuelTypeLabel = new System.Windows.Forms.Label();
+			this.engineSizeLabel = new System.Windows.Forms.Label();
+			this.regYearLabel = new System.Windows.Forms.Label();
+			this.modelLabel = new System.Windows.Forms.Label();
+			this.makeLabel = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.drivetrainBox = new System.Windows.Forms.ComboBox();
+			this.makeSelectionBox = new System.Windows.Forms.ComboBox();
+			this.modelSelectionBox = new System.Windows.Forms.ComboBox();
+			this.regYearSelectionBox = new System.Windows.Forms.ComboBox();
+			this.engineSizeBox = new System.Windows.Forms.ComboBox();
+			this.fuelTypeBox = new System.Windows.Forms.ComboBox();
+			this.transmissionTypeBox = new System.Windows.Forms.ComboBox();
 			this.debuggerTab = new System.Windows.Forms.TabPage();
 			this.grapherTab = new System.Windows.Forms.TabPage();
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-			this.makeSelection = new System.Windows.Forms.ComboBox();
-			this.modelSelection = new System.Windows.Forms.ComboBox();
-			this.tranmissionType = new System.Windows.Forms.ComboBox();
-			this.engineSize = new System.Windows.Forms.ComboBox();
-			this.fuelType = new System.Windows.Forms.ComboBox();
-			this.regYearSelection = new System.Windows.Forms.ComboBox();
-			this.drivetrainBox = new System.Windows.Forms.ComboBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.makeLabel = new System.Windows.Forms.Label();
-			this.modelLabel = new System.Windows.Forms.Label();
-			this.regYearLabel = new System.Windows.Forms.Label();
-			this.engineSizeLabel = new System.Windows.Forms.Label();
-			this.fuelTypeLabel = new System.Windows.Forms.Label();
-			this.transmissionTypeLabel = new System.Windows.Forms.Label();
-			this.drivetrainLabel = new System.Windows.Forms.Label();
-			this.profileSave = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabController.SuspendLayout();
 			this.analyserTab.SuspendLayout();
@@ -297,15 +297,15 @@ namespace CAN_Software
 			this.analyserTab.Controls.Add(this.makeLabel);
 			this.analyserTab.Controls.Add(this.button1);
 			this.analyserTab.Controls.Add(this.drivetrainBox);
-			this.analyserTab.Controls.Add(this.makeSelection);
-			this.analyserTab.Controls.Add(this.modelSelection);
-			this.analyserTab.Controls.Add(this.regYearSelection);
+			this.analyserTab.Controls.Add(this.makeSelectionBox);
+			this.analyserTab.Controls.Add(this.modelSelectionBox);
+			this.analyserTab.Controls.Add(this.regYearSelectionBox);
 			this.analyserTab.Controls.Add(this.CANText);
-			this.analyserTab.Controls.Add(this.fuelType);
+			this.analyserTab.Controls.Add(this.engineSizeBox);
 			this.analyserTab.Controls.Add(this.pauseButton);
-			this.analyserTab.Controls.Add(this.engineSize);
+			this.analyserTab.Controls.Add(this.fuelTypeBox);
 			this.analyserTab.Controls.Add(this.openButton);
-			this.analyserTab.Controls.Add(this.tranmissionType);
+			this.analyserTab.Controls.Add(this.transmissionTypeBox);
 			this.analyserTab.Controls.Add(this.focusBox);
 			this.analyserTab.Controls.Add(this.closeButton);
 			this.analyserTab.Controls.Add(this.focusButton);
@@ -325,171 +325,16 @@ namespace CAN_Software
 			this.analyserTab.Text = "Analyser";
 			this.analyserTab.Click += new System.EventHandler(this.analyserTab_Click);
 			// 
-			// debuggerTab
+			// profileSave
 			// 
-			this.debuggerTab.Location = new System.Drawing.Point(4, 22);
-			this.debuggerTab.Margin = new System.Windows.Forms.Padding(2);
-			this.debuggerTab.Name = "debuggerTab";
-			this.debuggerTab.Padding = new System.Windows.Forms.Padding(2);
-			this.debuggerTab.Size = new System.Drawing.Size(994, 616);
-			this.debuggerTab.TabIndex = 1;
-			this.debuggerTab.Text = "Debugger";
-			this.debuggerTab.UseVisualStyleBackColor = true;
-			this.debuggerTab.Click += new System.EventHandler(this.tabPage2_Click);
-			// 
-			// grapherTab
-			// 
-			this.grapherTab.Location = new System.Drawing.Point(4, 22);
-			this.grapherTab.Margin = new System.Windows.Forms.Padding(2);
-			this.grapherTab.Name = "grapherTab";
-			this.grapherTab.Padding = new System.Windows.Forms.Padding(2);
-			this.grapherTab.Size = new System.Drawing.Size(994, 616);
-			this.grapherTab.TabIndex = 2;
-			this.grapherTab.Text = "Grapher";
-			this.grapherTab.UseVisualStyleBackColor = true;
-			// 
-			// makeSelection
-			// 
-			this.makeSelection.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.makeSelection.FormattingEnabled = true;
-			this.makeSelection.Location = new System.Drawing.Point(1758, 150);
-			this.makeSelection.Margin = new System.Windows.Forms.Padding(2);
-			this.makeSelection.Name = "makeSelection";
-			this.makeSelection.Size = new System.Drawing.Size(121, 21);
-			this.makeSelection.TabIndex = 15;
-			this.makeSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-			// 
-			// modelSelection
-			// 
-			this.modelSelection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.modelSelection.FormattingEnabled = true;
-			this.modelSelection.Location = new System.Drawing.Point(1758, 34);
-			this.modelSelection.Margin = new System.Windows.Forms.Padding(2);
-			this.modelSelection.Name = "modelSelection";
-			this.modelSelection.Size = new System.Drawing.Size(121, 21);
-			this.modelSelection.TabIndex = 16;
-			this.modelSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
-			// 
-			// tranmissionType
-			// 
-			this.tranmissionType.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.tranmissionType.FormattingEnabled = true;
-			this.tranmissionType.Location = new System.Drawing.Point(1758, 673);
-			this.tranmissionType.Margin = new System.Windows.Forms.Padding(2);
-			this.tranmissionType.Name = "tranmissionType";
-			this.tranmissionType.Size = new System.Drawing.Size(121, 21);
-			this.tranmissionType.TabIndex = 17;
-			// 
-			// engineSize
-			// 
-			this.engineSize.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.engineSize.FormattingEnabled = true;
-			this.engineSize.Location = new System.Drawing.Point(1758, 532);
-			this.engineSize.Margin = new System.Windows.Forms.Padding(2);
-			this.engineSize.Name = "engineSize";
-			this.engineSize.Size = new System.Drawing.Size(121, 21);
-			this.engineSize.TabIndex = 18;
-			// 
-			// fuelType
-			// 
-			this.fuelType.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.fuelType.FormattingEnabled = true;
-			this.fuelType.Location = new System.Drawing.Point(1758, 397);
-			this.fuelType.Margin = new System.Windows.Forms.Padding(2);
-			this.fuelType.Name = "fuelType";
-			this.fuelType.Size = new System.Drawing.Size(121, 21);
-			this.fuelType.TabIndex = 19;
-			this.fuelType.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
-			// 
-			// regYearSelection
-			// 
-			this.regYearSelection.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.regYearSelection.FormattingEnabled = true;
-			this.regYearSelection.Location = new System.Drawing.Point(1758, 269);
-			this.regYearSelection.Margin = new System.Windows.Forms.Padding(2);
-			this.regYearSelection.Name = "regYearSelection";
-			this.regYearSelection.Size = new System.Drawing.Size(121, 21);
-			this.regYearSelection.TabIndex = 20;
-			this.regYearSelection.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-			// 
-			// drivetrainBox
-			// 
-			this.drivetrainBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.drivetrainBox.FormattingEnabled = true;
-			this.drivetrainBox.Location = new System.Drawing.Point(1758, 804);
-			this.drivetrainBox.Margin = new System.Windows.Forms.Padding(2);
-			this.drivetrainBox.Name = "drivetrainBox";
-			this.drivetrainBox.Size = new System.Drawing.Size(121, 21);
-			this.drivetrainBox.TabIndex = 21;
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(5, 914);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(443, 69);
-			this.button1.TabIndex = 22;
-			this.button1.Text = "Save";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// makeLabel
-			// 
-			this.makeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.makeLabel.AutoSize = true;
-			this.makeLabel.Location = new System.Drawing.Point(1716, 37);
-			this.makeLabel.Name = "makeLabel";
-			this.makeLabel.Size = new System.Drawing.Size(37, 13);
-			this.makeLabel.TabIndex = 23;
-			this.makeLabel.Text = "Make:";
-			// 
-			// modelLabel
-			// 
-			this.modelLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.modelLabel.AutoSize = true;
-			this.modelLabel.Location = new System.Drawing.Point(1714, 153);
-			this.modelLabel.Name = "modelLabel";
-			this.modelLabel.Size = new System.Drawing.Size(39, 13);
-			this.modelLabel.TabIndex = 24;
-			this.modelLabel.Text = "Model:";
-			// 
-			// regYearLabel
-			// 
-			this.regYearLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.regYearLabel.AutoSize = true;
-			this.regYearLabel.Location = new System.Drawing.Point(1698, 272);
-			this.regYearLabel.Name = "regYearLabel";
-			this.regYearLabel.Size = new System.Drawing.Size(55, 13);
-			this.regYearLabel.TabIndex = 25;
-			this.regYearLabel.Text = "Reg Year:";
-			// 
-			// engineSizeLabel
-			// 
-			this.engineSizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.engineSizeLabel.AutoSize = true;
-			this.engineSizeLabel.Location = new System.Drawing.Point(1687, 400);
-			this.engineSizeLabel.Name = "engineSizeLabel";
-			this.engineSizeLabel.Size = new System.Drawing.Size(66, 13);
-			this.engineSizeLabel.TabIndex = 26;
-			this.engineSizeLabel.Text = "Engine Size:";
-			// 
-			// fuelTypeLabel
-			// 
-			this.fuelTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.fuelTypeLabel.AutoSize = true;
-			this.fuelTypeLabel.Location = new System.Drawing.Point(1696, 535);
-			this.fuelTypeLabel.Name = "fuelTypeLabel";
-			this.fuelTypeLabel.Size = new System.Drawing.Size(57, 13);
-			this.fuelTypeLabel.TabIndex = 27;
-			this.fuelTypeLabel.Text = "Fuel Type:";
-			// 
-			// transmissionTypeLabel
-			// 
-			this.transmissionTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.transmissionTypeLabel.AutoSize = true;
-			this.transmissionTypeLabel.Location = new System.Drawing.Point(1655, 676);
-			this.transmissionTypeLabel.Name = "transmissionTypeLabel";
-			this.transmissionTypeLabel.Size = new System.Drawing.Size(98, 13);
-			this.transmissionTypeLabel.TabIndex = 28;
-			this.transmissionTypeLabel.Text = "Transmission Type:";
+			this.profileSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.profileSave.Location = new System.Drawing.Point(1758, 937);
+			this.profileSave.Name = "profileSave";
+			this.profileSave.Size = new System.Drawing.Size(121, 23);
+			this.profileSave.TabIndex = 30;
+			this.profileSave.Text = "Save Profile";
+			this.profileSave.UseVisualStyleBackColor = true;
+			this.profileSave.Click += new System.EventHandler(this.profileSave_Click);
 			// 
 			// drivetrainLabel
 			// 
@@ -501,15 +346,176 @@ namespace CAN_Software
 			this.drivetrainLabel.TabIndex = 29;
 			this.drivetrainLabel.Text = "Drivetrain:";
 			// 
-			// profileSave
+			// transmissionTypeLabel
 			// 
-			this.profileSave.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.profileSave.Location = new System.Drawing.Point(1758, 937);
-			this.profileSave.Name = "profileSave";
-			this.profileSave.Size = new System.Drawing.Size(121, 23);
-			this.profileSave.TabIndex = 30;
-			this.profileSave.Text = "Save Profile";
-			this.profileSave.UseVisualStyleBackColor = true;
+			this.transmissionTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.transmissionTypeLabel.AutoSize = true;
+			this.transmissionTypeLabel.Location = new System.Drawing.Point(1682, 676);
+			this.transmissionTypeLabel.Name = "transmissionTypeLabel";
+			this.transmissionTypeLabel.Size = new System.Drawing.Size(71, 13);
+			this.transmissionTypeLabel.TabIndex = 28;
+			this.transmissionTypeLabel.Text = "Transmission:";
+			// 
+			// fuelTypeLabel
+			// 
+			this.fuelTypeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.fuelTypeLabel.AutoSize = true;
+			this.fuelTypeLabel.Location = new System.Drawing.Point(1696, 535);
+			this.fuelTypeLabel.Name = "fuelTypeLabel";
+			this.fuelTypeLabel.Size = new System.Drawing.Size(57, 13);
+			this.fuelTypeLabel.TabIndex = 27;
+			this.fuelTypeLabel.Text = "Fuel Type:";
+			// 
+			// engineSizeLabel
+			// 
+			this.engineSizeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.engineSizeLabel.AutoSize = true;
+			this.engineSizeLabel.Location = new System.Drawing.Point(1687, 400);
+			this.engineSizeLabel.Name = "engineSizeLabel";
+			this.engineSizeLabel.Size = new System.Drawing.Size(66, 13);
+			this.engineSizeLabel.TabIndex = 26;
+			this.engineSizeLabel.Text = "Engine Size:";
+			// 
+			// regYearLabel
+			// 
+			this.regYearLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.regYearLabel.AutoSize = true;
+			this.regYearLabel.Location = new System.Drawing.Point(1698, 272);
+			this.regYearLabel.Name = "regYearLabel";
+			this.regYearLabel.Size = new System.Drawing.Size(55, 13);
+			this.regYearLabel.TabIndex = 25;
+			this.regYearLabel.Text = "Reg Year:";
+			// 
+			// modelLabel
+			// 
+			this.modelLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.modelLabel.AutoSize = true;
+			this.modelLabel.Location = new System.Drawing.Point(1714, 153);
+			this.modelLabel.Name = "modelLabel";
+			this.modelLabel.Size = new System.Drawing.Size(39, 13);
+			this.modelLabel.TabIndex = 24;
+			this.modelLabel.Text = "Model:";
+			// 
+			// makeLabel
+			// 
+			this.makeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.makeLabel.AutoSize = true;
+			this.makeLabel.Location = new System.Drawing.Point(1716, 37);
+			this.makeLabel.Name = "makeLabel";
+			this.makeLabel.Size = new System.Drawing.Size(37, 13);
+			this.makeLabel.TabIndex = 23;
+			this.makeLabel.Text = "Make:";
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(5, 914);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(443, 69);
+			this.button1.TabIndex = 22;
+			this.button1.Text = "Save";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// drivetrainBox
+			// 
+			this.drivetrainBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.drivetrainBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.drivetrainBox.FormattingEnabled = true;
+			this.drivetrainBox.Location = new System.Drawing.Point(1758, 804);
+			this.drivetrainBox.Margin = new System.Windows.Forms.Padding(2);
+			this.drivetrainBox.Name = "drivetrainBox";
+			this.drivetrainBox.Size = new System.Drawing.Size(121, 21);
+			this.drivetrainBox.TabIndex = 21;
+			// 
+			// makeSelectionBox
+			// 
+			this.makeSelectionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.makeSelectionBox.FormattingEnabled = true;
+			this.makeSelectionBox.Location = new System.Drawing.Point(1758, 34);
+			this.makeSelectionBox.Margin = new System.Windows.Forms.Padding(2);
+			this.makeSelectionBox.Name = "makeSelectionBox";
+			this.makeSelectionBox.Size = new System.Drawing.Size(121, 21);
+			this.makeSelectionBox.TabIndex = 15;
+			this.makeSelectionBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+			// 
+			// modelSelectionBox
+			// 
+			this.modelSelectionBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.modelSelectionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.modelSelectionBox.FormattingEnabled = true;
+			this.modelSelectionBox.Location = new System.Drawing.Point(1758, 149);
+			this.modelSelectionBox.Margin = new System.Windows.Forms.Padding(2);
+			this.modelSelectionBox.Name = "modelSelectionBox";
+			this.modelSelectionBox.Size = new System.Drawing.Size(121, 21);
+			this.modelSelectionBox.TabIndex = 16;
+			this.modelSelectionBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+			// 
+			// regYearSelectionBox
+			// 
+			this.regYearSelectionBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.regYearSelectionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.regYearSelectionBox.FormattingEnabled = true;
+			this.regYearSelectionBox.Location = new System.Drawing.Point(1758, 269);
+			this.regYearSelectionBox.Margin = new System.Windows.Forms.Padding(2);
+			this.regYearSelectionBox.Name = "regYearSelectionBox";
+			this.regYearSelectionBox.Size = new System.Drawing.Size(121, 21);
+			this.regYearSelectionBox.TabIndex = 20;
+			this.regYearSelectionBox.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+			// 
+			// engineSizeBox
+			// 
+			this.engineSizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.engineSizeBox.FormattingEnabled = true;
+			this.engineSizeBox.Location = new System.Drawing.Point(1758, 397);
+			this.engineSizeBox.Margin = new System.Windows.Forms.Padding(2);
+			this.engineSizeBox.Name = "engineSizeBox";
+			this.engineSizeBox.Size = new System.Drawing.Size(121, 21);
+			this.engineSizeBox.TabIndex = 19;
+			this.engineSizeBox.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+			// 
+			// fuelTypeBox
+			// 
+			this.fuelTypeBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.fuelTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.fuelTypeBox.FormattingEnabled = true;
+			this.fuelTypeBox.Location = new System.Drawing.Point(1758, 532);
+			this.fuelTypeBox.Margin = new System.Windows.Forms.Padding(2);
+			this.fuelTypeBox.Name = "fuelTypeBox";
+			this.fuelTypeBox.Size = new System.Drawing.Size(121, 21);
+			this.fuelTypeBox.TabIndex = 18;
+			// 
+			// transmissionTypeBox
+			// 
+			this.transmissionTypeBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.transmissionTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.transmissionTypeBox.FormattingEnabled = true;
+			this.transmissionTypeBox.Location = new System.Drawing.Point(1758, 673);
+			this.transmissionTypeBox.Margin = new System.Windows.Forms.Padding(2);
+			this.transmissionTypeBox.Name = "transmissionTypeBox";
+			this.transmissionTypeBox.Size = new System.Drawing.Size(121, 21);
+			this.transmissionTypeBox.TabIndex = 17;
+			// 
+			// debuggerTab
+			// 
+			this.debuggerTab.Location = new System.Drawing.Point(4, 22);
+			this.debuggerTab.Margin = new System.Windows.Forms.Padding(2);
+			this.debuggerTab.Name = "debuggerTab";
+			this.debuggerTab.Padding = new System.Windows.Forms.Padding(2);
+			this.debuggerTab.Size = new System.Drawing.Size(2044, 991);
+			this.debuggerTab.TabIndex = 1;
+			this.debuggerTab.Text = "Debugger";
+			this.debuggerTab.UseVisualStyleBackColor = true;
+			this.debuggerTab.Click += new System.EventHandler(this.tabPage2_Click);
+			// 
+			// grapherTab
+			// 
+			this.grapherTab.Location = new System.Drawing.Point(4, 22);
+			this.grapherTab.Margin = new System.Windows.Forms.Padding(2);
+			this.grapherTab.Name = "grapherTab";
+			this.grapherTab.Padding = new System.Windows.Forms.Padding(2);
+			this.grapherTab.Size = new System.Drawing.Size(2044, 991);
+			this.grapherTab.TabIndex = 2;
+			this.grapherTab.Text = "Grapher";
+			this.grapherTab.UseVisualStyleBackColor = true;
 			// 
 			// CANAnalyser
 			// 
@@ -565,12 +571,12 @@ namespace CAN_Software
 		private System.Windows.Forms.TabPage grapherTab;
 		private System.ComponentModel.BackgroundWorker backgroundWorker1;
 		private System.DirectoryServices.DirectoryEntry directoryEntry1;
-		private System.Windows.Forms.ComboBox makeSelection;
-		private System.Windows.Forms.ComboBox modelSelection;
-		private System.Windows.Forms.ComboBox tranmissionType;
-		private System.Windows.Forms.ComboBox engineSize;
-		private System.Windows.Forms.ComboBox fuelType;
-		private System.Windows.Forms.ComboBox regYearSelection;
+		private System.Windows.Forms.ComboBox makeSelectionBox;
+		private System.Windows.Forms.ComboBox modelSelectionBox;
+		private System.Windows.Forms.ComboBox transmissionTypeBox;
+		private System.Windows.Forms.ComboBox fuelTypeBox;
+		private System.Windows.Forms.ComboBox engineSizeBox;
+		private System.Windows.Forms.ComboBox regYearSelectionBox;
 		private System.Windows.Forms.ComboBox drivetrainBox;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label drivetrainLabel;

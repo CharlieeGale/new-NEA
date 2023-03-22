@@ -17,7 +17,8 @@ namespace CAN_Software
 		public loginPage()
 		{
 			InitializeComponent();
-		}
+            this.ControlBox = false;
+        }
         string connectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
 
 
@@ -39,7 +40,7 @@ namespace CAN_Software
             }
             return hashedResult;
         }
-        bool loginCheck(string userLogin, string hashedPassword)
+        private bool loginCheck(string userLogin, string hashedPassword)
         {
             const string loginCheck = @"SELECT * from logins l WHERE l.userName = @userLogin AND l.userPassword = @hashedPassword;"; //creates an sql query to execute
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -52,6 +53,24 @@ namespace CAN_Software
                 {
                     var isValid = myReader.Read();    // was there at least one row?
                     return isValid;
+                }
+            }
+        }
+        private bool priorityCheck(string userLogin, string hashedPassword)
+		{
+            {
+                const string priorityCheck = @"SELECT * from logins l WHERE l.userName = @userLogin AND l.userPassword = @hashedPassword; AND l.priorityLevel = 1"; //creates an sql query to execute
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(priorityCheck, connection))
+                {
+                    command.Parameters.Add("@userLogin", SqlDbType.VarChar, 255).Value = userLogin;
+                    command.Parameters.Add("@hashedPassword", SqlDbType.VarChar, 255).Value = hashedPassword;
+                    connection.Open();
+                    using (SqlDataReader myReader = command.ExecuteReader())
+                    {
+                        var isValid = myReader.Read();    // was there at least one row?
+                        return isValid;
+                    }
                 }
             }
         }
@@ -71,6 +90,35 @@ namespace CAN_Software
                 failedLogin.Activate();
                 failedLogin.ShowDialog();
             }
+		}
+
+		private void newLoginButton_Click(object sender, EventArgs e)
+		{
+            string username = usernameBox.Text;
+            string password = hashPassword(passwordBox.Text);
+            bool priorityChecker = priorityCheck(username, password);
+            if (priorityChecker)
+			{
+                string newUsername = newUsernameBox.Text;
+                string newPassword = hashPassword(newPasswordBox.Text);
+                string newLoginInsert = "INSERT INTO logins (userName, password, priorityLevel)VALUES (@username,@password,0);";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand command = new SqlCommand(newLoginInsert, connection))
+                {
+                    command.Parameters.Add("@userLogin", SqlDbType.VarChar, 255).Value = newUsername;
+                    command.Parameters.Add("@hashedPassword", SqlDbType.VarChar, 255).Value = newPassword;
+                    connection.Open();
+                    using (SqlDataReader myReader = command.ExecuteReader())
+					{
+                        
+					}
+                }
+            }
+        }
+
+		private void p_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

@@ -53,6 +53,12 @@
     <Compile Include="failedLoginPage.Designer.cs">
       <DependentUpon>failedLoginPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="failedProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="failedProfile.Designer.cs">
+      <DependentUpon>failedProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="loginPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,10 +76,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>masterDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="newLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newLogin.Designer.cs">
+      <DependentUpon>newLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="profileAdded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="profileAdded.Designer.cs">
+      <DependentUpon>profileAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="failedLoginPage.resx">
       <DependentUpon>failedLoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="failedProfile.resx">
+      <DependentUpon>failedProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="loginPage.resx">
       <DependentUpon>loginPage.cs</DependentUpon>
@@ -81,6 +102,12 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newLogin.resx">
+      <DependentUpon>newLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="profileAdded.resx">
+      <DependentUpon>profileAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

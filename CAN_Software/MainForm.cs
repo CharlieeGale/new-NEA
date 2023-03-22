@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 
 
 
+
 namespace CAN_Software
 {
 
@@ -34,6 +35,7 @@ namespace CAN_Software
 			LoginPage.ShowDialog();
 			
 			InitializeComponent();
+			fillStaticBoxes();
 			openButton.Enabled = false;
 			closeButton.Enabled = false;
 			pauseButton.Enabled = false;
@@ -53,6 +55,10 @@ namespace CAN_Software
 			fillMakeBox();
 			fillModelBox();
 			fillRegYear();
+			fillDriveTrain();
+			fillEngineSize();
+			fillFuelType();
+			fillTransmissionType();
 
 		}
 		public void fillMakeBox()
@@ -64,6 +70,7 @@ namespace CAN_Software
 				string makesQuery = "SELECT makeName from makes";
 				using (SqlCommand makesSearch = new SqlCommand(makesQuery, connection))
 				{
+
 					using (SqlDataReader myReader = makesSearch.ExecuteReader())
 						while (myReader.Read()) // loops to add all values read to a list.
 						{
@@ -71,12 +78,13 @@ namespace CAN_Software
 						}
 				}
 
-				while (makeSelection.SelectedItem != null)
+				while (makeSelectionBox.SelectedItem != null)
 				{
 					List<String> filteredMakes = new List<string>();
-					string searchMakesQuery = $"Select makeName from makes WHERE makeName LIKE {makeSelection.SelectedItem} %";
+					string searchMakesQuery = "Select makeName from makes WHERE makeName LIKE @makeSelection %";
 					using (SqlCommand searchMakesSearch = new SqlCommand(searchMakesQuery, connection))
 					{
+						searchMakesSearch.Parameters.Add("@makeSelection", SqlDbType.VarChar, 255).Value = makeSelectionBox.SelectedItem;
 						using (SqlDataReader myReaderFilter = searchMakesSearch.ExecuteReader())
 							while (myReaderFilter.Read())
 							{
@@ -86,7 +94,7 @@ namespace CAN_Software
 					makes = filteredMakes;
 
 				}
-				makeSelection.DataSource = makes;
+				makeSelectionBox.DataSource = makes;
 			}
 
 
@@ -95,30 +103,86 @@ namespace CAN_Software
 		}
 		public void fillModelBox()
 		{
+			
+			int desiredMake = 0;
+			List<String> models = new List<string>();
 
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				connection.Open(); // opens connection to the database
+
+				string makesQuery = "SELECT MakeID from makes where makeName = @makeName";
+				string modelsQuery = "SELECT modelName from models where makeID = @makeID";
+				using (SqlCommand makesSearch = new SqlCommand(makesQuery, connection))
+				{
+					makesSearch.Parameters.Add("@makeName", SqlDbType.VarChar, 255).Value = makeSelectionBox.SelectedItem;
+					using (SqlDataReader myReader = makesSearch.ExecuteReader())
+					{ 
+					while (myReader.Read()) // loops to add all values read to a list.
+					{
+						desiredMake = myReader.GetInt32(0);
+					}
+					}
+				}
+				if (desiredMake != 0)
+				{
+					using (SqlCommand modelSearch = new SqlCommand(modelsQuery, connection))
+					{
+						modelSearch.Parameters.Add("@makeID", SqlDbType.VarChar, 255).Value = desiredMake;
+
+						using (SqlDataReader myReader = modelSearch.ExecuteReader())
+						{
+							while (myReader.Read()) // loops to add all values read to a list.
+							{
+								models.Add(myReader.GetString(0));
+							}
+						}
+					}
+				}
+
+			}
+			modelSelectionBox.DataSource = models;
 		}
 		public void fillRegYear()
 		{
+			List<int> regYears = new List<int>();
+			for (int i = 2023; i > 1900; i--)
+			{
+				regYears.Add(i);
+			}
+			regYearSelectionBox.DataSource = regYears;
 
 		}
 		public void fillEngineSize()
 		{
+			List<String> engineSizes = new List<String>();
+			decimal temp = 0.3M;
+			
+			while (temp <10)
+			{
+				
+				temp = temp + 0.1M;
+				Decimal.Round(temp);
+				engineSizes.Add(temp.ToString());
+			}
+			engineSizeBox.DataSource = engineSizes;
 
 		}
 		public void fillFuelType()
 		{
-
+			string[] fuelTypes = new string[] { "Petrol", "Diesel", "LPG", "Electric" , "Hybrid" };
+			fuelTypeBox.DataSource = fuelTypes;
 		}
 		public void fillTransmissionType()
 		{
-
+			string[] transmissionTypes = new string[] { "Manual", "Automatic", "CVT", "Tiptronic" ,"Semi-Automatic" };
+			transmissionTypeBox.DataSource = transmissionTypes;
 		}
 		public void fillDriveTrain()
 		{
-
+			string[] driveTrains = new string[] { "AWD", "FWD", "4WD", "RWD"};
+			drivetrainBox.DataSource = driveTrains;
 		}
-
-
 		public void fillBaudRates()
 		{
 			int[] baudRates = new int[] { 300, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 74880, 115200, 230400, 250000, 500000, 1000000 };
@@ -128,13 +192,9 @@ namespace CAN_Software
 		{
 			foreach(var focusID in focusedIDs)
 			{
-				dataList.RemoveAll(x => !x.Contains(focusID));
-				
+				dataList.RemoveAll(x => !x.Contains(focusID));				
 			}
-
-
-		}
-		
+		}	
 		public void filterIDs()
 	{
 			//HashSet<string> toRemove = new HashSet<string>(File.ReadLines("FILTERIDS.txt"));
@@ -142,13 +202,9 @@ namespace CAN_Software
 			foreach (var filterID in filteredIDs)
 			{
 				dataList.RemoveAll(x => x.Contains(filterID));
-				
-
 			}
 		
 		}
-
-	
 			private void port_DataReceived(object sender,
 								 SerialDataReceivedEventArgs e) //reads and displays serialport data
 		{
@@ -158,15 +214,10 @@ namespace CAN_Software
 				// Show all the incoming data in the port's buffer in the output window
 				dataIn = serialPort.ReadExisting();
 				dataList = dataIn.Split('\n').ToList();
-				//File.WriteAllText("CANDATA.txt", dataIn);
-				//	string filteredData = filterIDs(File.ReadAllText(tempFile));
+
 				focusIDs();
 				filterIDs();
-				/*foreach (var data in dataList)
-				{
-					AppendCanText(data);
-				
-				}*/
+
 				AppendCanText(String.Join("\n" , dataList.Where(x => x.StartsWith("ID") && x.Contains("Data"))));
 			}
 		}
@@ -338,7 +389,10 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 
 		private void portSelect_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			openButton.Enabled = true;
+			if (portSelect.SelectedItem != null)
+			{
+				openButton.Enabled = true;
+			}
 		}
 
 		private void tabPage1_Click(object sender, EventArgs e)
@@ -413,7 +467,7 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
+			fillModelBox();
 		}
 
 		private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -429,6 +483,64 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 		private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
+		}
+
+		private void profileSave_Click(object sender, EventArgs e)
+		{
+			if (makeSelectionBox.Text != null & modelSelectionBox.Text != null & regYearLabel.Text != null & engineSizeBox.Text != null & fuelTypeBox.Text != null & transmissionTypeBox.Text != null & drivetrainBox.Text != null)
+			{
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
+					int makeID = 0;
+					int modelID = 0;
+					string fullname = ($"{regYearSelectionBox.Text} {makeSelectionBox.Text} {modelSelectionBox.Text} {engineSizeBox.Text}L {fuelTypeBox.Text} {transmissionTypeBox.Text} {drivetrainBox.Text}");
+					string profileInsert = "INSERT INTO cars (modelID, MakeID, regYear, fuelType, driveTrain, transmission, engineSize, fullName) values (@modelID, @makeID, @regYear,@fuelType,@driveTrain,@transmission,@engineSize,@fullName);";
+					string makesQuery = "SELECT MakeID from makes where makeName = @makeName;";
+					string modelQuery = "SELECT modelID from models where modelName = @modelName;";
+					using (SqlCommand makesSearch = new SqlCommand(makesQuery, connection))
+					{
+						makesSearch.Parameters.Add("@makeName", SqlDbType.VarChar, 255).Value = makeSelectionBox.SelectedItem;
+						using (SqlDataReader myReader = makesSearch.ExecuteReader())
+						{
+							while (myReader.Read()) // loops to add all values read to a list.
+							{
+								makeID = myReader.GetInt32(0);
+							}
+						}
+					}
+					using (SqlCommand modelSearch = new SqlCommand(modelQuery, connection))
+					{
+						modelSearch.Parameters.Add("@modelName", SqlDbType.VarChar, 255).Value = modelSelectionBox.SelectedItem;
+						using (SqlDataReader myReader = modelSearch.ExecuteReader())
+						{
+							while (myReader.Read()) // loops to add all values read to a list.
+							{
+								modelID = myReader.GetInt32(0);
+							}
+						}
+					}
+					using (SqlCommand profileInsertion = new SqlCommand(profileInsert, connection))
+					{
+						profileInsertion.Parameters.Add("@makeID", SqlDbType.VarChar, 255).Value = makeID;
+						profileInsertion.Parameters.Add("@modelID", SqlDbType.VarChar, 255).Value = modelID;
+						profileInsertion.Parameters.Add("@regYear", SqlDbType.VarChar, 255).Value = regYearSelectionBox.Text;
+						profileInsertion.Parameters.Add("@fuelType", SqlDbType.VarChar, 255).Value = fuelTypeBox.Text;
+						profileInsertion.Parameters.Add("@engineSize", SqlDbType.VarChar, 255).Value = engineSizeBox.Text;
+						profileInsertion.Parameters.Add("@transmission", SqlDbType.VarChar, 255).Value = transmissionTypeBox.Text;
+						profileInsertion.Parameters.Add("@driveTrain", SqlDbType.VarChar, 255).Value = drivetrainBox.Text;
+						profileInsertion.Parameters.Add("@fullName", SqlDbType.VarChar, 255).Value = fullname;
+						using (SqlDataReader myReader = profileInsertion.ExecuteReader()) ;
+					}
+				}
+				profileAdded newProfile = new profileAdded();
+				newProfile.ShowDialog();
+			}
+			else
+			{
+				failedProfile profileFail = new failedProfile();
+				profileFail.ShowDialog();
+			}
 		}
 	}
 

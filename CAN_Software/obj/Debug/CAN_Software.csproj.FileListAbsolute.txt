@@ -31,3 +31,5 @@ C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Soft
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.csproj.CoreCompileInputs.cache
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Software.exe
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Software.pdb
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.profileAdded.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedProfile.resources

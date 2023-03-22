@@ -1,0 +1,1 @@
+INSERT INTO models (MakeID, modelName) VALUES (20, 'DMC-12')

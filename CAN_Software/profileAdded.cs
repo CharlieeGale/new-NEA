@@ -10,20 +10,14 @@ using System.Windows.Forms;
 
 namespace CAN_Software
 {
-	public partial class failedLoginPage : Form
+	public partial class profileAdded : Form
 	{
-		public failedLoginPage()
+		public profileAdded()
 		{
 			InitializeComponent();
-			this.ControlBox = false;
 		}
 
-		private void failedLogin_Load(object sender, EventArgs e)
-		{
-
-		}
-
-		private void closeButton_Click(object sender, EventArgs e)
+		private void button1_Click(object sender, EventArgs e)
 		{
 			this.Close();
 		}
