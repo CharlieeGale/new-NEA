@@ -33,3 +33,6 @@ C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Soft
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN Software.pdb
 E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.profileAdded.resources
 E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedProfile.resources
+C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedProfile.resources
+C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.newLogin.resources
+C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.profileAdded.resources

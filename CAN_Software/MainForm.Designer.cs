@@ -61,7 +61,7 @@ namespace CAN_Software
 			this.regYearLabel = new System.Windows.Forms.Label();
 			this.modelLabel = new System.Windows.Forms.Label();
 			this.makeLabel = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.saveDataButton = new System.Windows.Forms.Button();
 			this.drivetrainBox = new System.Windows.Forms.ComboBox();
 			this.makeSelectionBox = new System.Windows.Forms.ComboBox();
 			this.modelSelectionBox = new System.Windows.Forms.ComboBox();
@@ -73,6 +73,13 @@ namespace CAN_Software
 			this.grapherTab = new System.Windows.Forms.TabPage();
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+			this.label1 = new System.Windows.Forms.Label();
+			this.idInput = new System.Windows.Forms.TextBox();
+			this.functionInput = new System.Windows.Forms.TextBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabController.SuspendLayout();
 			this.analyserTab.SuspendLayout();
@@ -287,6 +294,13 @@ namespace CAN_Software
 			// analyserTab
 			// 
 			this.analyserTab.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.analyserTab.Controls.Add(this.button2);
+			this.analyserTab.Controls.Add(this.button1);
+			this.analyserTab.Controls.Add(this.label3);
+			this.analyserTab.Controls.Add(this.label2);
+			this.analyserTab.Controls.Add(this.functionInput);
+			this.analyserTab.Controls.Add(this.idInput);
+			this.analyserTab.Controls.Add(this.label1);
 			this.analyserTab.Controls.Add(this.profileSave);
 			this.analyserTab.Controls.Add(this.drivetrainLabel);
 			this.analyserTab.Controls.Add(this.transmissionTypeLabel);
@@ -295,7 +309,7 @@ namespace CAN_Software
 			this.analyserTab.Controls.Add(this.regYearLabel);
 			this.analyserTab.Controls.Add(this.modelLabel);
 			this.analyserTab.Controls.Add(this.makeLabel);
-			this.analyserTab.Controls.Add(this.button1);
+			this.analyserTab.Controls.Add(this.saveDataButton);
 			this.analyserTab.Controls.Add(this.drivetrainBox);
 			this.analyserTab.Controls.Add(this.makeSelectionBox);
 			this.analyserTab.Controls.Add(this.modelSelectionBox);
@@ -406,14 +420,15 @@ namespace CAN_Software
 			this.makeLabel.TabIndex = 23;
 			this.makeLabel.Text = "Make:";
 			// 
-			// button1
+			// saveDataButton
 			// 
-			this.button1.Location = new System.Drawing.Point(5, 914);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(443, 69);
-			this.button1.TabIndex = 22;
-			this.button1.Text = "Save";
-			this.button1.UseVisualStyleBackColor = true;
+			this.saveDataButton.Location = new System.Drawing.Point(5, 914);
+			this.saveDataButton.Name = "saveDataButton";
+			this.saveDataButton.Size = new System.Drawing.Size(443, 69);
+			this.saveDataButton.TabIndex = 22;
+			this.saveDataButton.Text = "Save";
+			this.saveDataButton.UseVisualStyleBackColor = true;
+			this.saveDataButton.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// drivetrainBox
 			// 
@@ -517,6 +532,66 @@ namespace CAN_Software
 			this.grapherTab.Text = "Grapher";
 			this.grapherTab.UseVisualStyleBackColor = true;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(1173, 47);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(95, 13);
+			this.label1.TabIndex = 31;
+			this.label1.Text = "KNOWN CAN IDS";
+			// 
+			// idInput
+			// 
+			this.idInput.Location = new System.Drawing.Point(1091, 114);
+			this.idInput.Name = "idInput";
+			this.idInput.Size = new System.Drawing.Size(100, 20);
+			this.idInput.TabIndex = 32;
+			// 
+			// functionInput
+			// 
+			this.functionInput.Location = new System.Drawing.Point(1274, 114);
+			this.functionInput.Name = "functionInput";
+			this.functionInput.Size = new System.Drawing.Size(100, 20);
+			this.functionInput.TabIndex = 33;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(1064, 117);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(21, 13);
+			this.label2.TabIndex = 34;
+			this.label2.Text = "ID:";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(1217, 117);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(51, 13);
+			this.label3.TabIndex = 35;
+			this.label3.Text = "Function:";
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(0, 0);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 36;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(1401, 112);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 37;
+			this.button2.Text = "Add";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
 			// CANAnalyser
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,7 +653,7 @@ namespace CAN_Software
 		private System.Windows.Forms.ComboBox engineSizeBox;
 		private System.Windows.Forms.ComboBox regYearSelectionBox;
 		private System.Windows.Forms.ComboBox drivetrainBox;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button saveDataButton;
 		private System.Windows.Forms.Label drivetrainLabel;
 		private System.Windows.Forms.Label transmissionTypeLabel;
 		private System.Windows.Forms.Label fuelTypeLabel;
@@ -587,6 +662,13 @@ namespace CAN_Software
 		private System.Windows.Forms.Label modelLabel;
 		private System.Windows.Forms.Label makeLabel;
 		private System.Windows.Forms.Button profileSave;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.TextBox functionInput;
+		private System.Windows.Forms.TextBox idInput;
+		private System.Windows.Forms.Label label1;
 	}
 }
 

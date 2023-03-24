@@ -26,23 +26,29 @@ namespace CAN_Software
 		List<string> filteredIDs = new List<string>();
 		List<string> focusedIDs = new List<string>();
 		List<string> dataList = new List<string>();
-				
+		List<string> knownIDs = new List<string>();
+
+
 		bool SerialPortPendingClose = false;
 		public CANAnalyser()
 		{
 			loginPage LoginPage = new loginPage();
 			LoginPage.Activate();
 			LoginPage.ShowDialog();
-			
+
 			InitializeComponent();
 			fillStaticBoxes();
 			openButton.Enabled = false;
 			closeButton.Enabled = false;
 			pauseButton.Enabled = false;
+			CANText.Text = "jsefsjnefsjfnsdmfmfsfmsenjfsj";
+			CANText.AppendText("\nkdakkkdw");
+			
 		}
 		string connectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
 		System.Windows.Forms.Timer tm;
 		string dataIn;
+
 		void tm_Tick(object sender, EventArgs e)
 		{
 
@@ -103,7 +109,7 @@ namespace CAN_Software
 		}
 		public void fillModelBox()
 		{
-			
+
 			int desiredMake = 0;
 			List<String> models = new List<string>();
 
@@ -117,11 +123,11 @@ namespace CAN_Software
 				{
 					makesSearch.Parameters.Add("@makeName", SqlDbType.VarChar, 255).Value = makeSelectionBox.SelectedItem;
 					using (SqlDataReader myReader = makesSearch.ExecuteReader())
-					{ 
-					while (myReader.Read()) // loops to add all values read to a list.
 					{
-						desiredMake = myReader.GetInt32(0);
-					}
+						while (myReader.Read()) // loops to add all values read to a list.
+						{
+							desiredMake = myReader.GetInt32(0);
+						}
 					}
 				}
 				if (desiredMake != 0)
@@ -157,10 +163,10 @@ namespace CAN_Software
 		{
 			List<String> engineSizes = new List<String>();
 			decimal temp = 0.3M;
-			
-			while (temp <10)
+
+			while (temp < 10)
 			{
-				
+
 				temp = temp + 0.1M;
 				Decimal.Round(temp);
 				engineSizes.Add(temp.ToString());
@@ -170,17 +176,17 @@ namespace CAN_Software
 		}
 		public void fillFuelType()
 		{
-			string[] fuelTypes = new string[] { "Petrol", "Diesel", "LPG", "Electric" , "Hybrid" };
+			string[] fuelTypes = new string[] { "Petrol", "Diesel", "LPG", "Electric", "Hybrid" };
 			fuelTypeBox.DataSource = fuelTypes;
 		}
 		public void fillTransmissionType()
 		{
-			string[] transmissionTypes = new string[] { "Manual", "Automatic", "CVT", "Tiptronic" ,"Semi-Automatic" };
+			string[] transmissionTypes = new string[] { "Manual", "Automatic", "CVT", "Tiptronic", "Semi-Automatic" };
 			transmissionTypeBox.DataSource = transmissionTypes;
 		}
 		public void fillDriveTrain()
 		{
-			string[] driveTrains = new string[] { "AWD", "FWD", "4WD", "RWD"};
+			string[] driveTrains = new string[] { "AWD", "FWD", "4WD", "RWD" };
 			drivetrainBox.DataSource = driveTrains;
 		}
 		public void fillBaudRates()
@@ -190,23 +196,32 @@ namespace CAN_Software
 		}
 		public void focusIDs()
 		{
-			foreach(var focusID in focusedIDs)
-			{
-				dataList.RemoveAll(x => !x.Contains(focusID));				
-			}
-		}	
-		public void filterIDs()
-	{
-			//HashSet<string> toRemove = new HashSet<string>(File.ReadLines("FILTERIDS.txt"));
-			
-			foreach (var filterID in filteredIDs)
-			{
-				dataList.RemoveAll(x => x.Contains(filterID));
-			}
-		
+			dataList = dataList
+				.Select(x => string.Join("", x.Split(focusedIDs.ToArray(), StringSplitOptions.None)))
+				.Where(x => !string.IsNullOrEmpty(x))
+				.ToList();
 		}
-			private void port_DataReceived(object sender,
-								 SerialDataReceivedEventArgs e) //reads and displays serialport data
+		public void filterIDs()
+		{
+			//HashSet<string> toRemove = new HashSet<string>(File.ReadLines("FILTERIDS.txt"));
+
+			Parallel.ForEach(filteredIDs, filterID =>
+			{
+				for (int i = dataList.Count - 1; i >= 0; i--)
+				{
+					if (dataList[i].Contains(filterID))
+					{
+						lock (dataList)
+						{
+							dataList.RemoveAt(i);
+						}
+					}
+				}
+			});
+
+		}
+		private void port_DataReceived(object sender,
+							 SerialDataReceivedEventArgs e) //reads and displays serialport data
 		{
 			if (!SerialPortPendingClose)
 			{
@@ -218,7 +233,7 @@ namespace CAN_Software
 				focusIDs();
 				filterIDs();
 
-				AppendCanText(String.Join("\n" , dataList.Where(x => x.StartsWith("ID") && x.Contains("Data"))));
+				AppendCanText(String.Join("\n", dataList.Where(x => x.StartsWith("ID") && x.Contains("Data"))));
 			}
 		}
 		delegate void SetTextCallback(string text);
@@ -256,7 +271,7 @@ namespace CAN_Software
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			
+
 
 		}
 		private void CANText_TextChanged(object sender, EventArgs e)            //autoscroll
@@ -306,8 +321,8 @@ namespace CAN_Software
 			if (filterBox.Text.Length != 0 && !(filterList.Text.Contains(filteredID)))
 			{
 				filteredIDs.Add(filteredID);
-			
-				filterList.AppendText("FILTERED - "+filteredID+"\r\n");
+
+				filterList.AppendText("FILTERED - " + filteredID + "\r\n");
 				filterBox.Clear();
 			}
 		}
@@ -335,7 +350,7 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFilter);
 			if (e.KeyChar == (char)Keys.Enter && filterBox.Text.Length != 0)
 			{
 				filterButton_Click(this, new EventArgs());
-				
+
 			}
 		}
 		private void CheckEnterFocus(object sender, System.Windows.Forms.KeyPressEventArgs e) //enables enter for focus
@@ -381,9 +396,9 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 		}
 
 		private void clearButton_Click(object sender, EventArgs e)
-		{ 
+		{
 			filteredIDs.Clear();
-			focusedIDs .Clear();
+			focusedIDs.Clear();
 			filterList.Clear();
 		}
 
@@ -542,6 +557,33 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 				profileFail.ShowDialog();
 			}
 		}
-	}
 
+		private void button1_Click(object sender, EventArgs e)
+		{
+			
+			string root = @"C:\CarProfiles\";
+			// If directory does not exist, create it.
+			if (!Directory.Exists(root))
+			{
+				Directory.CreateDirectory(root);
+			}
+			string fullname = ($"{regYearSelectionBox.Text} {makeSelectionBox.Text} {modelSelectionBox.Text} {engineSizeBox.Text}L {fuelTypeBox.Text} {transmissionTypeBox.Text} {drivetrainBox.Text}.txt");
+			string filePath = root + fullname;
+
+			using (StreamWriter writer = new StreamWriter(filePath))
+			{
+				foreach (var id in knownIDs)
+				{
+					writer.Write(id);
+				}
+				writer.Write(CANText.Text);
+			}
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			string idString = $"ID {idInput.Text}: {functionInput.Text}\n";
+			knownIDs.Add(idString);
+		}
+	}
 }

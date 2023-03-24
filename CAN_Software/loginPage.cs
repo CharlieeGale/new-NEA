@@ -21,6 +21,17 @@ namespace CAN_Software
         }
         string connectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_NOCLOSE = 0x200;
+
+                CreateParams restrictClose = base.CreateParams;
+                restrictClose.ClassStyle |= CS_NOCLOSE;
+                return restrictClose;
+            }
+        }
 
         private void loginPage_Load(object sender, EventArgs e)
 		{
@@ -59,11 +70,11 @@ namespace CAN_Software
         private bool priorityCheck(string userLogin, string hashedPassword)
 		{
             {
-                const string priorityCheck = @"SELECT * from logins l WHERE l.userName = @userLogin AND l.userPassword = @hashedPassword; AND l.priorityLevel = 1"; //creates an sql query to execute
+                const string priorityCheck = @"SELECT * from logins l WHERE l.userName = @username AND l.userPassword = @hashedPassword AND l.priorityLevel = 1"; //creates an sql query to execute
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(priorityCheck, connection))
                 {
-                    command.Parameters.Add("@userLogin", SqlDbType.VarChar, 255).Value = userLogin;
+                    command.Parameters.Add("@username", SqlDbType.VarChar, 255).Value = userLogin;
                     command.Parameters.Add("@hashedPassword", SqlDbType.VarChar, 255).Value = hashedPassword;
                     connection.Open();
                     using (SqlDataReader myReader = command.ExecuteReader())
@@ -101,19 +112,27 @@ namespace CAN_Software
 			{
                 string newUsername = newUsernameBox.Text;
                 string newPassword = hashPassword(newPasswordBox.Text);
-                string newLoginInsert = "INSERT INTO logins (userName, password, priorityLevel)VALUES (@username,@password,0);";
+                string newLoginInsert = "INSERT INTO logins (userName, userPassword, priorityLevel)VALUES (@username,@password,0);";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(newLoginInsert, connection))
                 {
-                    command.Parameters.Add("@userLogin", SqlDbType.VarChar, 255).Value = newUsername;
-                    command.Parameters.Add("@hashedPassword", SqlDbType.VarChar, 255).Value = newPassword;
+                    command.Parameters.Add("@username", SqlDbType.VarChar, 255).Value = newUsername;
+                    command.Parameters.Add("@password", SqlDbType.VarChar, 255).Value = newPassword;
                     connection.Open();
                     using (SqlDataReader myReader = command.ExecuteReader())
 					{
-                        
+                        newLogin successfulLoginAdded = new newLogin();
+                        successfulLoginAdded.Activate();
+                        successfulLoginAdded.ShowDialog();
 					}
                 }
             }
+			else
+			{
+                failedLoginPage failedLogin = new failedLoginPage();
+                failedLogin.Activate();
+                failedLogin.ShowDialog();
+			}
         }
 
 		private void p_Click(object sender, EventArgs e)
