@@ -53,6 +53,12 @@ namespace CAN_Software
 			this.pauseButton = new System.Windows.Forms.Button();
 			this.tabController = new System.Windows.Forms.TabControl();
 			this.analyserTab = new System.Windows.Forms.TabPage();
+			this.button2 = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.functionInput = new System.Windows.Forms.TextBox();
+			this.idInput = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.profileSave = new System.Windows.Forms.Button();
 			this.drivetrainLabel = new System.Windows.Forms.Label();
 			this.transmissionTypeLabel = new System.Windows.Forms.Label();
@@ -73,13 +79,6 @@ namespace CAN_Software
 			this.grapherTab = new System.Windows.Forms.TabPage();
 			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-			this.label1 = new System.Windows.Forms.Label();
-			this.idInput = new System.Windows.Forms.TextBox();
-			this.functionInput = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.tabController.SuspendLayout();
 			this.analyserTab.SuspendLayout();
@@ -186,6 +185,7 @@ namespace CAN_Software
 			// 
 			// portSelect
 			// 
+			this.portSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.portSelect.FormattingEnabled = true;
 			this.portSelect.Location = new System.Drawing.Point(452, 4);
 			this.portSelect.Margin = new System.Windows.Forms.Padding(2);
@@ -196,6 +196,7 @@ namespace CAN_Software
 			// 
 			// baudSelect
 			// 
+			this.baudSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.baudSelect.FormattingEnabled = true;
 			this.baudSelect.Location = new System.Drawing.Point(452, 47);
 			this.baudSelect.Margin = new System.Windows.Forms.Padding(2);
@@ -208,6 +209,7 @@ namespace CAN_Software
 			// 
 			this.filterBox.Location = new System.Drawing.Point(671, 146);
 			this.filterBox.Margin = new System.Windows.Forms.Padding(2);
+			this.filterBox.MaxLength = 3;
 			this.filterBox.Name = "filterBox";
 			this.filterBox.Size = new System.Drawing.Size(77, 20);
 			this.filterBox.TabIndex = 7;
@@ -260,6 +262,7 @@ namespace CAN_Software
 			// 
 			this.focusBox.Location = new System.Drawing.Point(671, 193);
 			this.focusBox.Margin = new System.Windows.Forms.Padding(2);
+			this.focusBox.MaxLength = 3;
 			this.focusBox.Name = "focusBox";
 			this.focusBox.Size = new System.Drawing.Size(77, 20);
 			this.focusBox.TabIndex = 12;
@@ -295,7 +298,6 @@ namespace CAN_Software
 			// 
 			this.analyserTab.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.analyserTab.Controls.Add(this.button2);
-			this.analyserTab.Controls.Add(this.button1);
 			this.analyserTab.Controls.Add(this.label3);
 			this.analyserTab.Controls.Add(this.label2);
 			this.analyserTab.Controls.Add(this.functionInput);
@@ -338,6 +340,58 @@ namespace CAN_Software
 			this.analyserTab.TabIndex = 0;
 			this.analyserTab.Text = "Analyser";
 			this.analyserTab.Click += new System.EventHandler(this.analyserTab_Click);
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(1401, 112);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 23);
+			this.button2.TabIndex = 37;
+			this.button2.Text = "Add";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(1217, 117);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(51, 13);
+			this.label3.TabIndex = 35;
+			this.label3.Text = "Function:";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(1064, 117);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(21, 13);
+			this.label2.TabIndex = 34;
+			this.label2.Text = "ID:";
+			// 
+			// functionInput
+			// 
+			this.functionInput.Location = new System.Drawing.Point(1274, 114);
+			this.functionInput.Name = "functionInput";
+			this.functionInput.Size = new System.Drawing.Size(100, 20);
+			this.functionInput.TabIndex = 33;
+			// 
+			// idInput
+			// 
+			this.idInput.Location = new System.Drawing.Point(1091, 114);
+			this.idInput.MaxLength = 3;
+			this.idInput.Name = "idInput";
+			this.idInput.Size = new System.Drawing.Size(100, 20);
+			this.idInput.TabIndex = 32;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(1173, 47);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(95, 13);
+			this.label1.TabIndex = 31;
+			this.label1.Text = "KNOWN CAN IDS";
 			// 
 			// profileSave
 			// 
@@ -443,6 +497,7 @@ namespace CAN_Software
 			// 
 			// makeSelectionBox
 			// 
+			this.makeSelectionBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.makeSelectionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.makeSelectionBox.FormattingEnabled = true;
 			this.makeSelectionBox.Location = new System.Drawing.Point(1758, 34);
@@ -478,6 +533,7 @@ namespace CAN_Software
 			// 
 			// engineSizeBox
 			// 
+			this.engineSizeBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.engineSizeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.engineSizeBox.FormattingEnabled = true;
 			this.engineSizeBox.Location = new System.Drawing.Point(1758, 397);
@@ -531,66 +587,6 @@ namespace CAN_Software
 			this.grapherTab.TabIndex = 2;
 			this.grapherTab.Text = "Grapher";
 			this.grapherTab.UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(1173, 47);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(95, 13);
-			this.label1.TabIndex = 31;
-			this.label1.Text = "KNOWN CAN IDS";
-			// 
-			// idInput
-			// 
-			this.idInput.Location = new System.Drawing.Point(1091, 114);
-			this.idInput.Name = "idInput";
-			this.idInput.Size = new System.Drawing.Size(100, 20);
-			this.idInput.TabIndex = 32;
-			// 
-			// functionInput
-			// 
-			this.functionInput.Location = new System.Drawing.Point(1274, 114);
-			this.functionInput.Name = "functionInput";
-			this.functionInput.Size = new System.Drawing.Size(100, 20);
-			this.functionInput.TabIndex = 33;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(1064, 117);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(21, 13);
-			this.label2.TabIndex = 34;
-			this.label2.Text = "ID:";
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(1217, 117);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(51, 13);
-			this.label3.TabIndex = 35;
-			this.label3.Text = "Function:";
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(0, 0);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 36;
-			this.button1.Text = "button1";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(1401, 112);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 23);
-			this.button2.TabIndex = 37;
-			this.button2.Text = "Add";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// CANAnalyser
 			// 
@@ -663,7 +659,6 @@ namespace CAN_Software
 		private System.Windows.Forms.Label makeLabel;
 		private System.Windows.Forms.Button profileSave;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox functionInput;

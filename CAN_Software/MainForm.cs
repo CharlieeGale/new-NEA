@@ -23,6 +23,7 @@ namespace CAN_Software
 
 	public partial class CANAnalyser : Form
 	{
+		// Creates all "global" lists
 		List<string> filteredIDs = new List<string>();
 		List<string> focusedIDs = new List<string>();
 		List<string> dataList = new List<string>();
@@ -41,8 +42,7 @@ namespace CAN_Software
 			openButton.Enabled = false;
 			closeButton.Enabled = false;
 			pauseButton.Enabled = false;
-			CANText.Text = "jsefsjnefsjfnsdmfmfsfmsenjfsj";
-			CANText.AppendText("\nkdakkkdw");
+
 			
 		}
 		string connectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
@@ -196,28 +196,32 @@ namespace CAN_Software
 		}
 		public void focusIDs()
 		{
-			dataList = dataList
-				.Select(x => string.Join("", x.Split(focusedIDs.ToArray(), StringSplitOptions.None)))
-				.Where(x => !string.IsNullOrEmpty(x))
-				.ToList();
+			if (focusedIDs.Count > 0)
+			{
+				List<string> temp = new List<string>();
+				List<string> temp2 = new List<string>();
+				temp2 = dataList;
+				
+				foreach (var focusID in focusedIDs)
+				{
+					dataList = temp2;
+					dataList.RemoveAll(x => !x.Contains(focusID));
+					foreach (var data in dataList)
+					{
+						temp.Add(data);
+
+					}
+				}
+				dataList = temp;
+			}
 		}
 		public void filterIDs()
 		{
 			//HashSet<string> toRemove = new HashSet<string>(File.ReadLines("FILTERIDS.txt"));
-
-			Parallel.ForEach(filteredIDs, filterID =>
+			foreach (var filterID in filteredIDs)
 			{
-				for (int i = dataList.Count - 1; i >= 0; i--)
-				{
-					if (dataList[i].Contains(filterID))
-					{
-						lock (dataList)
-						{
-							dataList.RemoveAt(i);
-						}
-					}
-				}
-			});
+				dataList.RemoveAll(x => x.Contains(filterID));
+			}
 
 		}
 		private void port_DataReceived(object sender,
@@ -225,14 +229,14 @@ namespace CAN_Software
 		{
 			if (!SerialPortPendingClose)
 			{
-				Thread.Sleep(150);
+				
 				// Show all the incoming data in the port's buffer in the output window
 				dataIn = serialPort.ReadExisting();
 				dataList = dataIn.Split('\n').ToList();
 
 				focusIDs();
 				filterIDs();
-
+				Thread.Sleep(150);
 				AppendCanText(String.Join("\n", dataList.Where(x => x.StartsWith("ID") && x.Contains("Data"))));
 			}
 		}
@@ -250,7 +254,10 @@ namespace CAN_Software
 			}
 			else
 			{
-				this.CANText.AppendText(text);
+				if (text.Length < 55)
+				{
+					this.CANText.AppendText(text);
+				}
 			}
 		}
 
@@ -258,7 +265,7 @@ namespace CAN_Software
 		{
 			tm = new System.Windows.Forms.Timer();
 			tm.Tick += new EventHandler(tm_Tick);
-			tm.Interval = 100; //in ms
+			tm.Interval = 150; //in ms
 			tm.Enabled = true;
 		}
 
@@ -282,7 +289,8 @@ namespace CAN_Software
 
 		private void closeButton_Click(object sender, EventArgs e)
 		{
-
+			portSelect.Enabled = true;
+			baudSelect.Enabled = true;
 			tm.Stop();
 			SerialPortPendingClose = true;
 			Thread.Sleep(serialPort.ReadTimeout); //Wait for reading threads to finish
@@ -291,12 +299,15 @@ namespace CAN_Software
 			openButton.Enabled = true;
 			closeButton.Enabled = false;
 			CANText.Clear();
+
 			CANText.Text = "CLOSING PORT \n";
 		}//close button
 
 
 		private void openButton_Click(object sender, EventArgs e) //Open Button
 		{
+			portSelect.Enabled = false;
+			baudSelect.Enabled = false;
 
 
 			CANText.Clear();
@@ -307,7 +318,7 @@ namespace CAN_Software
 			openButton.Enabled = false;
 			closeButton.Enabled = true;
 			pauseButton.Enabled = true;
-			serialPort.ReadTimeout = 200; //[ms] Time out if Read operation does not finish
+			serialPort.ReadTimeout = 150; //[ms] Time out if Read operation does not finish
 			serialPort.Open();
 			timerCreate();
 		}
@@ -376,8 +387,10 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 				SerialPortPendingClose = true;
 				Thread.Sleep(serialPort.ReadTimeout); //Wait for reading threads to finish
 				serialPort.Close();
-				CANText.AppendText("\r\n PAUSED");
 				SerialPortPendingClose = false;
+				Thread.Sleep(300);
+
+				CANText.AppendText("\n\r PAUSED");
 				openButton.Enabled = false;
 				closeButton.Enabled = true;
 			}
@@ -467,8 +480,17 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 
 		private void focusButton_Click_1(object sender, EventArgs e)
 		{
+			string focusedID;
+			focusedID = "ID " + focusBox.Text;
+			if (focusBox.Text.Length != 0 && !(filterList.Text.Contains(focusedID)))
+			{
 
+				focusedIDs.Add(focusedID);
+				filterList.AppendText("FOCUSED - " + focusedID + "\r\n");
+				focusBox.Clear();
+			}
 		}
+	
 
 		private void analyserTab_Click(object sender, EventArgs e)
 		{
@@ -584,6 +606,11 @@ System.Windows.Forms.KeyPressEventHandler(CheckEnterFocus);
 		{
 			string idString = $"ID {idInput.Text}: {functionInput.Text}\n";
 			knownIDs.Add(idString);
+		}
+
+		private void resetButton_Click(object sender, EventArgs e)
+		{
+			fillStaticBoxes();
 		}
 	}
 }

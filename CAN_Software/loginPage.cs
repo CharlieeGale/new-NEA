@@ -12,11 +12,11 @@ using System.Data.SqlClient;
 
 namespace CAN_Software
 {
-	public partial class loginPage : Form
-	{
-		public loginPage()
-		{
-			InitializeComponent();
+    public partial class loginPage : Form
+    {
+        public loginPage()
+        {
+            InitializeComponent();
             this.ControlBox = false;
         }
         string connectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=True";
@@ -34,9 +34,9 @@ namespace CAN_Software
         }
 
         private void loginPage_Load(object sender, EventArgs e)
-		{
+        {
 
-		}
+        }
         static string hashPassword(String password)
         {
 
@@ -68,12 +68,13 @@ namespace CAN_Software
             }
         }
         private bool priorityCheck(string userLogin, string hashedPassword)
-		{
+        {
             {
                 const string priorityCheck = @"SELECT * from logins l WHERE l.userName = @username AND l.userPassword = @hashedPassword AND l.priorityLevel = 1"; //creates an sql query to execute
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(priorityCheck, connection))
                 {
+
                     command.Parameters.Add("@username", SqlDbType.VarChar, 255).Value = userLogin;
                     command.Parameters.Add("@hashedPassword", SqlDbType.VarChar, 255).Value = hashedPassword;
                     connection.Open();
@@ -86,8 +87,8 @@ namespace CAN_Software
             }
         }
 
-		private void loginButton_Click(object sender, EventArgs e)
-		{
+        private void loginButton_Click(object sender, EventArgs e)
+        {
             string username = usernameBox.Text;
             string password = hashPassword(passwordBox.Text);
             bool detailCheck = loginCheck(username, password);
@@ -97,21 +98,44 @@ namespace CAN_Software
             }
             else
             {
-                failedLoginPage failedLogin = new failedLoginPage();
-                failedLogin.Activate();
-                failedLogin.ShowDialog();
+                failedLogin();
             }
-		}
+        }
+        private void failedLogin()
+        {
+            failedLoginPage failedLogin = new failedLoginPage();
+            failedLogin.Activate();
+            failedLogin.ShowDialog();
+        }
+        private bool duplicateCheck(string username)
+        {
 
-		private void newLoginButton_Click(object sender, EventArgs e)
-		{
+            const string priorityCheck = @"SELECT * from logins l WHERE l.userName = @username"; //creates an sql query to execute
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlCommand command = new SqlCommand(priorityCheck, connection))
+            {
+
+                command.Parameters.Add("@username", SqlDbType.VarChar, 255).Value = username;
+                connection.Open();
+                using (SqlDataReader myReader = command.ExecuteReader())
+                {
+                    var isValid = myReader.Read();    // was there at least one row?
+                    return isValid;
+                }
+            }
+        }
+        private void newLoginButton_Click(object sender, EventArgs e)
+        {
+
+
             string username = usernameBox.Text;
             string password = hashPassword(passwordBox.Text);
+            string newUsername = newUsernameBox.Text;
+            string newPassword = hashPassword(newPasswordBox.Text);
             bool priorityChecker = priorityCheck(username, password);
-            if (priorityChecker)
-			{
-                string newUsername = newUsernameBox.Text;
-                string newPassword = hashPassword(newPasswordBox.Text);
+            if (priorityChecker && newUsername.Length > 0 && newPassword.Length > 0)
+            {
+                
                 string newLoginInsert = "INSERT INTO logins (userName, userPassword, priorityLevel)VALUES (@username,@password,0);";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand command = new SqlCommand(newLoginInsert, connection))
@@ -120,24 +144,41 @@ namespace CAN_Software
                     command.Parameters.Add("@password", SqlDbType.VarChar, 255).Value = newPassword;
                     connection.Open();
                     using (SqlDataReader myReader = command.ExecuteReader())
-					{
+                    {
                         newLogin successfulLoginAdded = new newLogin();
                         successfulLoginAdded.Activate();
                         successfulLoginAdded.ShowDialog();
-					}
+                    }
                 }
             }
-			else
-			{
-                failedLoginPage failedLogin = new failedLoginPage();
-                failedLogin.Activate();
-                failedLogin.ShowDialog();
-			}
+            else
+            {
+                if (newUsername.Length < 0 || newPassword.Length < 0 || duplicateCheck(newUsername))
+                {
+                    failedLogin();
+                }
+				else
+				{
+                    bool details = loginCheck(username, password);
+                    if (details)
+                    {
+                        failedPriority priorityTooLow = new failedPriority();
+                        priorityTooLow.Activate();
+                        priorityTooLow.ShowDialog();
+                    }
+                    else
+                    {
+                        failedLogin();
+                    }
+                }
+            }
+               
+            }
+
+            private void p_Click(object sender, EventArgs e)
+            {
+
+            }
         }
+    }
 
-		private void p_Click(object sender, EventArgs e)
-		{
-
-		}
-	}
-}

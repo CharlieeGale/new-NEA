@@ -36,3 +36,5 @@ E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedProfile.re
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedProfile.resources
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.newLogin.resources
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.profileAdded.resources
+C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedPriority.resources
+C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.dataStreamSaved.resources
