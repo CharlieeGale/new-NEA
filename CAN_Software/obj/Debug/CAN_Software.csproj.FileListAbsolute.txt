@@ -38,3 +38,6 @@ C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Soft
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.profileAdded.resources
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedPriority.resources
 C:\Users\charl\OneDrive\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.dataStreamSaved.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.dataStreamSaved.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.failedPriority.resources
+E:\Documents\GitHub\new-NEA\CAN_Software\obj\Debug\CAN_Software.newLogin.resources

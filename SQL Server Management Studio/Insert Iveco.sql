@@ -1,0 +1,7 @@
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Powerstar')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Winniebago')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Daily')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Daily 4x4')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Daily 70C')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Avida')
+INSERT INTO models (MakeID, modelName) VALUES (30, 'Daily 35S13 LWB')

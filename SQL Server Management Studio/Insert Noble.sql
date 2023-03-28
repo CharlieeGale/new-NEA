@@ -1,0 +1,6 @@
+INSERT INTO models (MakeID, modelName) VALUES (49, ' M15')
+INSERT INTO models (MakeID, modelName) VALUES (49, ' M14')
+INSERT INTO models (MakeID, modelName) VALUES (49, ' M400')
+INSERT INTO models (MakeID, modelName) VALUES (49, ' m600')
+INSERT INTO models (MakeID, modelName) VALUES (49, ' M12')
+INSERT INTO models (MakeID, modelName) VALUES (49, ' M12 GTO 3R')

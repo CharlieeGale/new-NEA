@@ -1,0 +1,5 @@
+INSERT INTO models (MakeID, modelName) VALUES (58, ' Green Monster')
+INSERT INTO models (MakeID, modelName) VALUES (58, ' Concept One')
+INSERT INTO models (MakeID, modelName) VALUES (58, ' Concept S')
+INSERT INTO models (MakeID, modelName) VALUES (58, ' Concept Two')
+INSERT INTO models (MakeID, modelName) VALUES (58, ' Nevera')
