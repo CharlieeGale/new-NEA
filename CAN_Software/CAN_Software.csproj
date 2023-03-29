@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CANProject.cs" />
     <Compile Include="dataStreamSaved.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -453,6 +453,7 @@ namespace CAN_Software
 			this.regYearLabel.Size = new System.Drawing.Size(55, 13);
 			this.regYearLabel.TabIndex = 25;
 			this.regYearLabel.Text = "Reg Year:";
+			this.regYearLabel.Click += new System.EventHandler(this.regYearLabel_Click);
 			// 
 			// modelLabel
 			// 
@@ -627,9 +628,6 @@ namespace CAN_Software
 		public System.IO.Ports.SerialPort serialPort;
 		private System.Windows.Forms.Button openButton;
 		private System.Windows.Forms.Button closeButton;
-		private System.Windows.Forms.ComboBox portSelect;
-		private System.Windows.Forms.ComboBox baudSelect;
-		private System.Windows.Forms.TextBox filterBox;
 		private System.Windows.Forms.Button filterButton;
 		private System.Windows.Forms.TextBox filterList;
 		private System.Windows.Forms.Button clearButton;
@@ -642,13 +640,6 @@ namespace CAN_Software
 		private System.Windows.Forms.TabPage grapherTab;
 		private System.ComponentModel.BackgroundWorker backgroundWorker1;
 		private System.DirectoryServices.DirectoryEntry directoryEntry1;
-		private System.Windows.Forms.ComboBox makeSelectionBox;
-		private System.Windows.Forms.ComboBox modelSelectionBox;
-		private System.Windows.Forms.ComboBox transmissionTypeBox;
-		private System.Windows.Forms.ComboBox fuelTypeBox;
-		private System.Windows.Forms.ComboBox engineSizeBox;
-		private System.Windows.Forms.ComboBox regYearSelectionBox;
-		private System.Windows.Forms.ComboBox drivetrainBox;
 		private System.Windows.Forms.Button saveDataButton;
 		private System.Windows.Forms.Label drivetrainLabel;
 		private System.Windows.Forms.Label transmissionTypeLabel;
@@ -664,6 +655,16 @@ namespace CAN_Software
 		private System.Windows.Forms.TextBox functionInput;
 		private System.Windows.Forms.TextBox idInput;
 		private System.Windows.Forms.Label label1;
+		public System.Windows.Forms.ComboBox portSelect;
+		public System.Windows.Forms.ComboBox baudSelect;
+		public System.Windows.Forms.TextBox filterBox;
+		public System.Windows.Forms.ComboBox makeSelectionBox;
+		public System.Windows.Forms.ComboBox modelSelectionBox;
+		public System.Windows.Forms.ComboBox transmissionTypeBox;
+		public System.Windows.Forms.ComboBox fuelTypeBox;
+		public System.Windows.Forms.ComboBox engineSizeBox;
+		public System.Windows.Forms.ComboBox regYearSelectionBox;
+		public System.Windows.Forms.ComboBox drivetrainBox;
 	}
 }
 
